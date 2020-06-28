@@ -1,0 +1,262 @@
+{
+	"output_file": "settings.json",
+
+	"btnreadme": {
+		"type": "button",
+		"label": "open readme",
+		"tooltip": "read this!",
+		"wsevent": "",
+		"function": "openreadme",
+		"group": ""
+	},
+
+	"EnableDebug": {
+		"type": "checkbox",
+		"value": false,
+		"label": "Enable Debug",
+		"tooltip": "Enable or disable debug logs",
+		"group": "Global Settings"
+	},
+	"AHKExePath": {
+		"type": "textbox",
+		"value": "",
+		"label": "AutoHotkey Executable Path",
+		"tooltip": "Enter the local path to the AutoHotkey executable. This is necessary if using use the AutoHotkey reward type and arguments need to be passed to script.",
+		"group": "Global Settings"
+	},
+
+	"TwitchClientId": {
+		"type": "textbox",
+		"value": "",
+		"label": "Twitch Client Id",
+		"tooltip": "Enter the client id of your application at dev.twitch.com. See readme for more information.",
+		"group": "Twitch Auth - KEEP HIDDEN"
+	},
+	"TwitchClientSecret": {
+		"type": "textbox",
+		"value": "",
+		"label": "Twitch Client Secret",
+		"tooltip": "Enter the client secret of your application at dev.twitch.com. See readme for more information.",
+		"group": "Twitch Auth - KEEP HIDDEN"
+	},
+	"TwitchRedirectUrl": {
+		"type": "textbox",
+		"value": "https://et-twitch-auth.com/",
+		"label": "Twitch Auth Redirect URL",
+		"tooltip": "This is where you will be redirected after getting an auth code. This should match the redirect url in dev.twitch application settings.",
+		"group": "Twitch Auth - KEEP HIDDEN"
+	},
+	"TwitchAuthCode": {
+		"type": "textbox",
+		"value": "",
+		"label": "Twitch Auth Code",
+		"tooltip": "Enter an Auth Code that allows the bot to read channel point redemptions on the channel being watched.",
+		"group": "Twitch Auth - KEEP HIDDEN"
+	},
+	"btnGetToken": {
+		"type": "button",
+		"label": "Get Token",
+		"tooltip": "Generate an Auth Code for the watched twitch account with permissions to read channel point redemptions.",
+		"wsevent": "",
+		"function": "GetToken",
+		"group": "Twitch Auth - KEEP HIDDEN"
+	},
+	"btnDeleteSavedTokens": {
+		"type": "button",
+		"label": "Delete Saved Tokens",
+		"tooltip": "Clear out saved tokens so that a new Authorization Code can be used.",
+		"wsevent": "",
+		"function": "DeleteSavedTokens",
+		"group": "Twitch Auth - KEEP HIDDEN"
+	},
+	"btnRefreshTokens": {
+		"type": "button",
+		"label": "Refresh Saved Tokens",
+		"tooltip": "Manually trigger a refresh of access token using refresh token..",
+		"wsevent": "",
+		"function": "RefreshTokens",
+		"group": "Twitch Auth - KEEP HIDDEN"
+	},
+
+
+	"RewardName1": {
+		"type": "textbox",
+		"value": "",
+		"label": "Title of Twitch Reward",
+		"tooltip": "Specify the name of the Twitch Reward that will trigger this event when detected.",
+		"group": "Twitch Reward 1 Event"
+	},
+	"RewardType1": {
+		"type": "dropdown",
+		"label": "Reward Type",
+		"value": "1) Alert - Gif and/or SFX",
+		"tooltip": "Select the type of reward. Then match the associated number with the below inputs that can be used.",
+		"items": [
+			"1) Alert - Gif and/or SFX",
+			"2) Countdown Overlay",
+			"3) Timeout User",
+			"4) Convert Channel Points to Currency",
+			"5) AutoHotkey"
+		],
+		"group": "Twitch Reward 1 Event"
+	},
+	"RewardActivationType1": {
+		"type": "dropdown",
+		"label": "Activation Point",
+		"value": "Immediate",
+		"tooltip": "Set whether the reward should be triggered immediately on reward redemption by viewer, or when the reward is accepted/rejected from the reward queue. Note: twitch currently doesn't return a way to distinguish between Accept or Reject so Reject will still trigger the reward.",
+		"items": [
+			"Immediate",
+			"On Reward Queue Accept/Reject"
+		],
+		"group": "Twitch Reward 1 Event"
+	},
+	"AlertSFXPath1": {
+		"type": "textbox",
+		"value": "",
+		"label": "1) Alert Path to SFX File",
+		"tooltip": "Specify the path to the SFX effect to trigger.",
+		"group": "Twitch Reward 1 Event"
+	},
+	"AlertSFXVolume1": {
+		"type": "slider",
+		"label": "1) Alert SFX Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 1,
+		"tooltip": "Specify the volume to the SFX effect to trigger.",
+		"group": "Twitch Reward 1 Event"
+	},
+	"AlertSFXDelay1": {
+		"type": "numberbox",
+		"label": "1) Alert SFX Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Twitch Reward 1 Event"
+	},
+
+
+	"CountdownTimerLength1": {
+		"type": "numberbox",
+		"label": "2) Time in Seconds to Add to Countdown",
+		"value": 600,
+		"tooltip": "Set the amount of time in seconds to add to the timer.",
+		"group": "Twitch Reward 1 Event"
+	},
+	"ResetCommand1": {
+		"type": "textbox",
+		"label": "2) Command Name for Resetting Countdown",
+		"value": "!reset1",
+		"tooltip": "Set the command name that can be used by moderator+ to reset timer to closest countdown multiple or by a specific amount of seconds.",
+		"group": "Twitch Reward 1 Event"
+	},
+	"RedeemedSFXPath1": {
+		"type": "textbox",
+		"value": "",
+		"label": "2) Path to SFX at Redemption File",
+		"tooltip": "Specify the path to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Twitch Reward 1 Event"
+	},
+	"RedeemedSFXVolume1": {
+		"type": "slider",
+		"label": "2) SFX at Redemption Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 1,
+		"tooltip": "Specify the volume to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Twitch Reward 1 Event"
+	},
+	"RedeemedSFXDelay1": {
+		"type": "numberbox",
+		"label": "2) SFX at Redemption Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Twitch Reward 1 Event"
+	},
+	"FinishedSFXPath1": {
+		"type": "textbox",
+		"value": "",
+		"label": "2) Path to SFX at Finish File",
+		"tooltip": "Specify the path to the SFX effect to trigger at the end of the countdown.",
+		"group": "Twitch Reward 1 Event"
+	},
+	"FinishedSFXVolume1": {
+		"type": "slider",
+		"label": "2) SFX at Finish Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 1,
+		"tooltip": "Specify the volume to the SFX effect to trigger at the end of the countdown.",
+		"group": "Twitch Reward 1 Event"
+	},
+
+
+	"TimeoutType1": {
+		"type": "dropdown",
+		"label": "3) Timeout Type",
+		"value": "Fixed",
+		"tooltip": "Fixed.",
+		"items": [
+			"Fixed",
+			"Reward Redeemer",
+			"Reward Message"
+		],
+		"group": "Twitch Reward 1 Event"
+	},
+	"TimeoutFixedUser1": {
+		"type": "textbox",
+		"value": "",
+		"label": "3) Fixed Username to Timeout",
+		"tooltip": "If timeout type is set to Fixed this will be the user that is timed out.",
+		"group": "Twitch Reward 1 Event"
+	},
+	"TimeoutDuration1": {
+		"type": "numberbox",
+		"label": "3) Timeout Duration",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to timeout user.",
+		"group": "Twitch Reward 1 Event"
+	},
+
+
+	"UseRewardCost1": {
+		"type": "checkbox",
+		"value": true,
+		"label": "4) Use Reward Amount",
+		"tooltip": "If set to true it will assign currency to user equal to reward cost.",
+		"group": "Twitch Reward 1 Event"
+	},
+	"CurrencyAmount1": {
+		"type": "numberbox",
+		"label": "4) Currency Amount",
+		"value": 10,
+		"tooltip": "Set the amount of currency to give to user on redemption.",
+		"group": "Twitch Reward 1 Event"
+	},
+
+
+	"AHKPath1": {
+		"type": "textbox",
+		"value": "",
+		"label": "5) Path to AutoHotkey script",
+		"tooltip": "Specify the path to the AutoHotKey script to trigger.",
+		"group": "Twitch Reward 1 Event"
+	},
+	"AHKArguments1": {
+		"type": "textbox",
+		"value": "{username}, {message}, {rewardtitle}, {rewardcost}, {timestamp}",
+		"label": "5) Arguments to Pass to AutoHotkey Script",
+		"tooltip": "Enter a comma separated list of arguments to pass to script. {username}, {message}, {rewardtitle}, {rewardcost}, {timestamp} can be used to get user and reward info to pass into script.",
+		"group": "Twitch Reward 1 Event"
+	},
+	"AHKDelay1": {
+		"type": "numberbox",
+		"label": "5) AutoHotkey Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to process next reward.",
+		"group": "Twitch Reward 1 Event"
+	}
+}
