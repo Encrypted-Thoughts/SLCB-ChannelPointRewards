@@ -3,7 +3,8 @@
 #---------------------------
 #   Import Libraries
 #---------------------------
-import clr, codecs, json, os, re, sys, threading, datetime
+import clr, codecs, json, os, re, sys, threading, datetime, random
+random = random.WichmannHill()
 
 clr.AddReference("IronPython.Modules.dll")
 clr.AddReferenceToFileAndPath(os.path.join(os.path.dirname(os.path.realpath(__file__)) + "\References", r"TwitchLib.PubSub.dll"))
@@ -23,7 +24,7 @@ Version = "2.0.0.0"
 #---------------------------
 SettingsFile = os.path.join(os.path.dirname(__file__), "settings.json")
 RefreshTokenFile = os.path.join(os.path.dirname(__file__), "tokens.json")
-ReadMe = os.path.join(os.path.dirname(__file__), "README.txt")
+ReadMe = os.path.join(os.path.dirname(__file__), "README.md")
 EventReceiver = None
 ThreadQueue = []
 CurrentThread = None
@@ -330,10 +331,16 @@ def EventReceiverRewardRedeemed(sender, e):
 
                     ConvertToCurrencyRewardWorker(e.Login, e.DisplayName, amount)
                 elif "AutoHotkey" in rewardType:
+                    params = getattr(ScriptSettings, "AHKArguments" + str(i))
+                    params = params.replace("{username}", str(e.DisplayName))
+                    params = params.replace("{message}", str(e.Message))
+                    params = params.replace("{rewardtitle}", str(e.RewardTitle))
+                    params = params.replace("{rewardcost}", str(e.RewardCost))
+                    params = params.replace("{timestamp}", str(e.TimeStamp))
                     ThreadQueue.append(threading.Thread(target=AutoHotkeyRewardWorker,args=(
                         getattr(ScriptSettings, "AHKDelay" + str(i)), 
                         getattr(ScriptSettings, "AHKPath" + str(i)), 
-                        getattr(ScriptSettings, "AHKArguments" + str(i)),
+                        params,
                         )))
     return
 
@@ -344,12 +351,20 @@ def AlertRewardWorker(number, mediapath, sfxpath, volume, delay, text):
     if ScriptSettings.EnableDebug:
         Parent.Log(ScriptName, mediapath + " " + sfxpath + " " + str(volume) + " " + str(delay))
 
-    Parent.PlaySound(sfxpath, volume/100.0)
+    sfxfile = sfxpath
+    if os.path.isdir(sfxpath):
+        sfxfile = sfxpath + "\\" + random.choice(os.listdir(sfxpath))
+
+    mediafile = mediapath
+    if os.path.isdir(mediapath):
+        mediafile = mediapath + "\\" + random.choice(os.listdir(mediapath))
+
+    Parent.PlaySound(sfxfile, volume/100.0)
     global PlayNextAt
     PlayNextAt = datetime.datetime.now() + datetime.timedelta(0, delay)
 
     payload = { 
-        "path": mediapath,
+        "path": mediafile,
         "text": text 
     }
 
@@ -365,15 +380,23 @@ def CountdownRewardWorker(number, title, seconds, path, volume, delay, finishedp
     if ScriptSettings.EnableDebug:
         Parent.Log(ScriptName, path + " " + str(volume/100.0) + " " + str(delay))
 
+    sfxfile1 = path
+    if os.path.isdir(path):
+        sfxfile1 = path + "\\" + random.choice(os.listdir(path))
+
+    sfxfile2 = finishedpath
+    if os.path.isdir(finishedpath):
+        sfxfile2 = finishedpath + "\\" + random.choice(os.listdir(finishedpath))
+
     global PlayNextAt
     PlayNextAt = datetime.datetime.now() + datetime.timedelta(0, delay)
 
     payload = { 
         "title": title,
         "seconds": seconds, 
-        "redeemedSFXPath": path,
+        "redeemedSFXPath": sfxfile1,
         "redeemedSFXVolume": volume/100.0,
-        "finishedSFXPath": finishedpath,
+        "finishedSFXPath": sfxfile2,
         "finishedSFXVolume": finishedvolume/100.0
     }
 
@@ -403,16 +426,11 @@ def ConvertToCurrencyRewardWorker(user, username, amount):
 #---------------------------
 #   AutoHotkeyRewardWorker (Worker function for AutoHotkey Rewards to be spun off into its own thread to complete without blocking the rest of script execution.)
 #---------------------------
-def AutoHotkeyRewardWorker(delay, script, args = None):
+def AutoHotkeyRewardWorker(delay, script, args):
     if ScriptSettings.EnableDebug:
-        Parent.Log(ScriptName, script + " " + str(delay) + " " + str(args))
+        Parent.Log(ScriptName, ScriptSettings.AHKExePath + " " + script + " " + args)
 
-    if args is None:
-        os.startfile(script)
-    else:
-        AHK = os.path.join(ScriptSettings.AHKPath, "AutoHotkey.exe")
-        args.insert(0,script)
-        os.spawnv(os.P_NOWAIT, AHK, args)
+    os.system('"' + ScriptSettings.AHKExePath + '" "' + script + '" ' + args)
 
     global PlayNextAt
     PlayNextAt = datetime.datetime.now() + datetime.timedelta(0, delay)
