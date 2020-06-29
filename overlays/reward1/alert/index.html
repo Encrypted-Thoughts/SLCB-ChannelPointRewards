@@ -2,15 +2,19 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Random Media Overlay</title>
+    <title>Alert Overlay 1</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div id="container">
-        <img id="media" hidden>
+    <div id="container" class="animate__animated" style="visibility: hidden">
+        <img id="media">
+        <h1 id="text"></h1>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="../API_Key.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"></script>
+    <script src="../../../API_Key.js"></script>
     <script src="client.js"></script>
 </body>
 </html>

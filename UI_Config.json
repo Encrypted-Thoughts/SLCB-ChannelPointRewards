@@ -111,6 +111,20 @@
 		],
 		"group": "Twitch Reward 1 Event"
 	},
+	"AlertMediaPath1": {
+		"type": "textbox",
+		"value": "",
+		"label": "1) Alert Path to Image/Gif File",
+		"tooltip": "Specify the path to the Image/Gif to trigger.",
+		"group": "Twitch Reward 1 Event"
+	},
+	"AlertText1": {
+		"type": "textbox",
+		"value": "",
+		"label": "1) Alert Text",
+		"tooltip": "Text to be displayed with the alert.",
+		"group": "Twitch Reward 1 Event"
+	},
 	"AlertSFXPath1": {
 		"type": "textbox",
 		"value": "",
@@ -137,7 +151,14 @@
 	},
 
 
-	"CountdownTimerLength1": {
+	"CountdownTitle1": {
+		"type": "textbox",
+		"label": "2) Countdown Title",
+		"value": "Countdown 1",
+		"tooltip": "Title to be displayed on countdown overlay.",
+		"group": "Twitch Reward 1 Event"
+	},
+	"CountdownLength1": {
 		"type": "numberbox",
 		"label": "2) Time in Seconds to Add to Countdown",
 		"value": 600,

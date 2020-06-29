@@ -52,15 +52,20 @@ class Settings(object):
             self.TwitchRedirectUrl = ""
             self.TwitchAuthCode = ""
 
-            for i in range(1, 26):
+            for i in range(1, 2):
                 setattr(self, "RewardName" + str(i), "")
                 setattr(self, "RewardType" + str(i), "Immediate")
                 setattr(self, "RewardActivationType" + str(i), "Immediate")
 
+                setattr(self, "AlertMediaPath" + str(i), "")
+                setattr(self, "AlertText" + str(i), "")
                 setattr(self, "AlertSFXPath" + str(i), "")
                 setattr(self, "AlertSFXVolume" + str(i), 100)
                 setattr(self, "AlertSFXDelay" + str(i), 10)
 
+                setattr(self, "CountdownTitle" + str(i), "")
+                setattr(self, "CountdownLength" + str(i), 60)
+                setattr(self, "ResetCommand" + str(i), "!reset1")
                 setattr(self, "RedeemedSFXPath" + str(i), "")
                 setattr(self, "RedeemedSFXVolume" + str(i), 100)
                 setattr(self, "RedeemedSFXDelay" + str(i), 10)
@@ -120,16 +125,19 @@ def Init():
 def Execute(data):
 
     if data.IsChatMessage() and Parent.HasPermission(data.User,"Moderator",""):
-        for i in range(1, 26):
+        for i in range(1, 2):
             resetCommand = getattr(ScriptSettings, "ResetCommand" + str(i))
             rewardType = getattr(ScriptSettings, "RewardType" + str(i))
-            if rewardType == "" and resetCommand.lower() in data.Message.lower():
-                length = ScriptSettings.TimerLength
+            if "Countdown Overlay" in rewardType and resetCommand.lower() in data.Message.lower():
+                if ScriptSettings.EnableDebug:
+                    Parent.Log(ScriptName, "Resetting countdown")
+                length = getattr(ScriptSettings, "CountdownLength" + str(i))
                 type = "reset"
                 if data.GetParamCount() > 1:
                     length = int(data.GetParam(1))
                     type = "add"
                 payload = {
+                    "title": getattr(ScriptSettings, "CountdownTitle" + str(i)),
                     "interval": length,
                     "type": type,
                     "redeemedSFXPath": getattr(ScriptSettings, "RedeemedSFXPath" + str(i)),
@@ -137,7 +145,7 @@ def Execute(data):
                     "finishedSFXPath": getattr(ScriptSettings, "FinishedSFXPath" + str(i)),
                     "finishedSFXVolume": getattr(ScriptSettings, "FinishedSFXVolume" + str(i))/100.0
                 }
-                Parent.BroadcastWsEvent("EVENT_RESET_",json.dumps(payload, encoding='utf-8-sig'))
+                Parent.BroadcastWsEvent("EVENT_RESET_" + str(i),json.dumps(payload, encoding='utf-8-sig'))
 
     return
 
@@ -273,28 +281,31 @@ def EventReceiverRewardRedeemed(sender, e):
     if ScriptSettings.EnableDebug:
         Parent.Log(ScriptName, "Event triggered: " + str(e.TimeStamp) + " ChannelId: " + str(e.ChannelId) + " Login: " + str(e.Login) + " DisplayName: " + str(e.DisplayName) + " Message: " + str(e.Message) + " RewardId: " + str(e.RewardId) + " RewardTitle: " + str(e.RewardTitle) + " RewardPrompt: " + str(e.RewardPrompt) + " RewardCost: " + str(e.RewardCost) + " Status: " + str(e.Status))
 
-    for i in range(1, 26):
+    for i in range(1, 2):
         Parent.Log(ScriptName, str(i))
         if e.RewardTitle == getattr(ScriptSettings, "RewardName" + str(i)):
             rewardType = getattr(ScriptSettings, "RewardType" + str(i))
             activationType = getattr(ScriptSettings, "RewardActivationType" + str(i))
             if (activationType == "Immediate" and "FULFILLED" in e.Status) or (activationType == r"On Reward Queue Accept/Reject" and "ACTION_TAKEN" in e.Status):
                 if "Alert - Gif and/or SFX" in rewardType:
-                    ThreadQueue.append(threading.Thread(target=RewardRedeemedWorker,args=(
+                    ThreadQueue.append(threading.Thread(target=AlertRewardWorker,args=(
                         i, 
+                        getattr(ScriptSettings, "AlertMediaPath" + str(i)), 
                         getattr(ScriptSettings, "AlertSFXPath" + str(i)), 
                         getattr(ScriptSettings, "AlertSFXVolume" + str(i)), 
                         getattr(ScriptSettings, "AlertSFXDelay" + str(i)),
+                        getattr(ScriptSettings, "AlertText" + str(i)),
                         )))
                 elif "Countdown Overlay" in rewardType:
-                    ThreadQueue.append(threading.Thread(target=RewardRedeemedWorker,args=(
+                    ThreadQueue.append(threading.Thread(target=CountdownRewardWorker,args=(
                         i, 
+                        getattr(ScriptSettings, "CountdownTitle" + str(i)), 
+                        getattr(ScriptSettings, "CountdownLength" + str(i)),
                         getattr(ScriptSettings, "RedeemedSFXPath" + str(i)), 
                         getattr(ScriptSettings, "RedeemedSFXVolume" + str(i)), 
                         getattr(ScriptSettings, "RedeemedSFXDelay" + str(i)), 
                         getattr(ScriptSettings, "FinishedSFXPath" + str(i)), 
                         getattr(ScriptSettings, "FinishedSFXVolume" + str(i)), 
-                        getattr(ScriptSettings, "CountdownTimerLength" + str(i)),
                         )))
                 elif "Timeout User" in rewardType:
                     timeoutType = getattr(ScriptSettings, "TimeoutType" + str(i))
@@ -329,15 +340,18 @@ def EventReceiverRewardRedeemed(sender, e):
 #---------------------------
 #   AlertRewardWorker (Worker function for Alert Rewards to be spun off into its own thread to complete without blocking the rest of script execution.)
 #---------------------------
-def AlertRewardWorker(number, path, volume, delay, text):
+def AlertRewardWorker(number, mediapath, sfxpath, volume, delay, text):
     if ScriptSettings.EnableDebug:
-        Parent.Log(ScriptName, path + " " + str(volume) + " " + str(delay))
+        Parent.Log(ScriptName, mediapath + " " + sfxpath + " " + str(volume) + " " + str(delay))
 
-    Parent.PlaySound(path, volume/100.0)
+    Parent.PlaySound(sfxpath, volume/100.0)
     global PlayNextAt
     PlayNextAt = datetime.datetime.now() + datetime.timedelta(0, delay)
 
-    payload = { "text": text }
+    payload = { 
+        "path": mediapath,
+        "text": text 
+    }
 
     if ScriptSettings.EnableDebug:
         Parent.Log(ScriptName, str(payload))
@@ -347,7 +361,7 @@ def AlertRewardWorker(number, path, volume, delay, text):
 #---------------------------
 #   CountdownRewardWorker (Worker function for Countdown Rewards to be spun off into its own thread to complete without blocking the rest of script execution.)
 #---------------------------
-def CountdownRewardWorker(number, path, volume, delay, finishedpath, finishedvolume, timerSeconds):
+def CountdownRewardWorker(number, title, seconds, path, volume, delay, finishedpath, finishedvolume):
     if ScriptSettings.EnableDebug:
         Parent.Log(ScriptName, path + " " + str(volume/100.0) + " " + str(delay))
 
@@ -355,7 +369,8 @@ def CountdownRewardWorker(number, path, volume, delay, finishedpath, finishedvol
     PlayNextAt = datetime.datetime.now() + datetime.timedelta(0, delay)
 
     payload = { 
-        "seconds": timerSeconds, 
+        "title": title,
+        "seconds": seconds, 
         "redeemedSFXPath": path,
         "redeemedSFXVolume": volume/100.0,
         "finishedSFXPath": finishedpath,
@@ -365,7 +380,7 @@ def CountdownRewardWorker(number, path, volume, delay, finishedpath, finishedvol
     if ScriptSettings.EnableDebug:
         Parent.Log(ScriptName, str(payload))
     
-    Parent.BroadcastWsEvent('EVENT_TIMER_' + str(number) + '_REDEEMED', json.dumps(payload, encoding='utf-8-sig'))
+    Parent.BroadcastWsEvent('EVENT_COUNTDOWN_' + str(number) + '_REDEEMED', json.dumps(payload, encoding='utf-8-sig'))
 
 #---------------------------
 #   TimeoutRewardWorker (Worker function for Timeout/Ban Rewards to be spun off into its own thread to complete without blocking the rest of script execution.)
@@ -381,7 +396,7 @@ def TimeoutRewardWorker(username, duration):
 #---------------------------
 def ConvertToCurrencyRewardWorker(user, username, amount):
     if ScriptSettings.EnableDebug:
-        Parent.Log(ScriptName, str(amount))
+        Parent.Log(ScriptName, user + " " + username + " " + str(amount))
 
     Parent.AddPoints(user, username, amount)
 

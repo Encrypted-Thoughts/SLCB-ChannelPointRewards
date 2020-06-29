@@ -37,8 +37,8 @@ function connectWebsocket() {
             website: "twitch.tv/encryptedthoughts",
             api_key: API_Key,
             events: [
-                "EVENT_NO_FUDGES_REDEEMED",
-                "EVENT_FUCKED_UP"
+                "EVENT_COUNTDOWN_1_REDEEMED",
+                "EVENT_RESET_1"
             ]
         };
 
@@ -54,9 +54,10 @@ function connectWebsocket() {
         var socketMessage = JSON.parse(message.data);
         console.log(socketMessage);
 
-        if (socketMessage.event === "EVENT_NO_FUDGES_REDEEMED") {
+        if (socketMessage.event === "EVENT_COUNTDOWN_1_REDEEMED") {
 
             data = JSON.parse(socketMessage.data);
+            $("#header").html(data.title);
             PlaySound(data.redeemedSFXPath, data.redeemedSFXVolume)
             if (timer > 0)
                 timer += data.seconds;
@@ -65,23 +66,24 @@ function connectWebsocket() {
                 var seconds = parseInt(data.seconds % 60, 10);
                 minutes = minutes < 10 ? "0" + minutes : minutes;
                 seconds = seconds < 10 ? "0" + seconds : seconds;
-                $('#time').text(minutes + ":" + seconds);
-                StartTimer(data.seconds - 1, $('#time'), data.finishedSFXPath, data.finishedSFXVolume);
+                $("#time").text(minutes + ":" + seconds);
+                StartTimer(data.seconds - 1, $("#time"), data.finishedSFXPath, data.finishedSFXVolume);
                 $("body").css('visibility', 'visible');
                 $("body").removeClass("animate__zoomOut");
                 $("body").addClass("animate__zoomIn");
             }
         }
-        else if (socketMessage.event === "EVENT_FUCKED_UP") {
+        else if (socketMessage.event === "EVENT_RESET_1") {
             data = JSON.parse(socketMessage.data);
+            $("#header").html(data.title);
             if (timer <= 0) {
                 PlaySound(data.redeemedSFXPath, data.redeemedSFXVolume)
                 var minutes = parseInt(data.interval / 60, 10);
                 var seconds = parseInt(data.interval % 60, 10);
                 minutes = minutes < 10 ? "0" + minutes : minutes;
                 seconds = seconds < 10 ? "0" + seconds : seconds;
-                $('#time').text(minutes + ":" + seconds);
-                StartTimer(data.interval - 1, $('#time'), data.finishedSFXPath, data.finishedSFXVolume);
+                $("#time").text(minutes + ":" + seconds);
+                StartTimer(data.interval - 1, $("#time"), data.finishedSFXPath, data.finishedSFXVolume);
                 $("body").css('visibility', 'visible');
                 $("body").removeClass("animate__zoomOut");
                 $("body").addClass("animate__zoomIn");

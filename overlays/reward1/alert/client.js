@@ -34,7 +34,7 @@ function connectWebsocket() {
             website: "twitch.tv/encryptedthoughts",
             api_key: API_Key,
             events: [
-                "EVENT_MEDIA_REDEEMED"
+                "EVENT_ALERT_1_REDEEMED"
             ]
         };
 
@@ -52,12 +52,20 @@ function connectWebsocket() {
         console.log(socketMessage);
 
         //EVENT_QUEUE_DISPLAY
-        if (socketMessage.event === "EVENT_MEDIA_REDEEMED") {
-            $("#media")
-            .attr("src", JSON.parse(socketMessage.data).path)
-            .show()
-            .delay(5000)
-            .fadeOut(100);
+        if (socketMessage.event === "EVENT_ALERT_1_REDEEMED") {
+            var data = JSON.parse(socketMessage.data);
+
+            $("#media").attr("src", data.path);
+            $("#text").html(data.text);
+
+            $("#container").css('visibility', 'visible')
+                .removeClass("animate__fadeOut")
+                .addClass("animate__zoomIn");
+
+            setTimeout(function () {
+                $("#container").removeClass("animate__zoomIn")
+                    .addClass("animate__fadeOut");
+            }, 5000);
         }
     };
 
