@@ -51,7 +51,6 @@ function connectWebsocket() {
         var socketMessage = JSON.parse(message.data);
         console.log(socketMessage);
 
-        //EVENT_QUEUE_DISPLAY
         if (socketMessage.event === "EVENT_ALERT_1_REDEEMED") {
             var data = JSON.parse(socketMessage.data);
 
