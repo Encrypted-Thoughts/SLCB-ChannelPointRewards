@@ -24,13 +24,13 @@ Once you've setup your twitch application. Retrieve your applications Client ID 
 
 WARNING: Do not share your Client Secret with anyone as with the combination of your Client Id and Client Secret they'll have permissions to generate oAuth tokens for whatever purpose they want to manipulate your account.
 
-Enter them into the script's corresponding Twitch Auth settings, scroll to the bottom of the settings and Save.
+Enter them into the script's corresponding Twitch Auth settings, scroll to the bottom of the settings and Save. <br />
 ![image](https://user-images.githubusercontent.com/50642352/86070799-2edc8300-ba43-11ea-8a0c-9ee9f87eadeb.png)
 
-Then click the "Get Token" button. This should direct you to a link to retrieve an auth code.
+Then click the "Get Token" button. This should direct you to a link to retrieve an auth code. <br />
 ![image](https://user-images.githubusercontent.com/50642352/86070427-4f580d80-ba42-11ea-862e-3f188e7012d4.png)
 
-If you used my redirect url you should end up at a page that looks something like this:
+If you used my redirect url you should end up at a page that looks something like this: <br />
 ![image](https://user-images.githubusercontent.com/50642352/86070889-65b29900-ba43-11ea-8528-31e3ee936b23.png)
 
 Copy the Authorization Code from this page into the script settings shown above and once again scroll to the bottom of settings and Save. <br />
