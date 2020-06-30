@@ -82,9 +82,9 @@
 	"btnRewardHeader1": {
 		"type": "button",
 		"label": "V Reward 1 Settings V",
-		"tooltip": "blah",
+		"tooltip": "Jump to Save button.",
 		"wsevent": "",
-		"function": "",
+		"function": "PageDown",
 		"group": " "
 	},
 	"RewardName1": {
@@ -291,12 +291,1930 @@
 		"group": "Reward 1 - AutoHotkey Settings"
 	},
 
+
 	"btnRewardHeader2": {
 		"type": "button",
 		"label": "V Reward 2 Settings V",
-		"tooltip": "blah",
+		"tooltip": "Jump to Save button.",
 		"wsevent": "",
-		"function": "",
+		"function": "PageDown",
 		"group": "  "
+	},
+	"RewardName2": {
+		"type": "textbox",
+		"value": "",
+		"label": "Title of Twitch Reward",
+		"tooltip": "Specify the name of the Twitch Reward that will trigger this event when detected.",
+		"group": "  "
+	},
+	"RewardType2": {
+		"type": "dropdown",
+		"label": "Reward Type",
+		"value": "Alert - Gif and/or SFX",
+		"tooltip": "Select the type of reward. Then match the associated number with the below inputs that can be used.",
+		"items": [
+			"Alert - Gif and/or SFX",
+			"Countdown Overlay",
+			"Timeout User",
+			"Convert Channel Points to Currency",
+			"AutoHotkey"
+		],
+		"group": "Reward 2 - Mandatory Settings"
+	},
+	"RewardActivationType2": {
+		"type": "dropdown",
+		"label": "Activation Point",
+		"value": "Immediate",
+		"tooltip": "Set whether the reward should be triggered immediately on reward redemption by viewer, or when the reward is accepted/rejected from the reward queue. Note: twitch currently doesn't return a way to distinguish between Accept or Reject so Reject will still trigger the reward.",
+		"items": [
+			"Immediate",
+			"On Reward Queue Accept/Reject"
+		],
+		"group": "Reward 2 - Mandatory Settings"
+	},
+
+
+	"AlertMediaPath2": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Path to Image/Gif File",
+		"tooltip": "Specify the path to the Image/Gif to trigger.",
+		"group": "Reward 2 - Alert Settings"
+	},
+	"AlertText2": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Text",
+		"tooltip": "Text to be displayed with the alert.",
+		"group": "Reward 2 - Alert Settings"
+	},
+	"AlertSFXPath2": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Path to SFX File",
+		"tooltip": "Specify the path to the SFX effect to trigger.",
+		"group": "Reward 2 - Alert Settings"
+	},
+	"AlertSFXVolume2": {
+		"type": "slider",
+		"label": "Reward 2 - Alert SFX Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 2,
+		"tooltip": "Specify the volume to the SFX effect to trigger.",
+		"group": "Reward 2 - Alert Settings"
+	},
+	"AlertSFXDelay2": {
+		"type": "numberbox",
+		"label": "Alert SFX Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Reward 2 - Alert Settings"
+	},
+
+
+	"CountdownTitle2": {
+		"type": "textbox",
+		"label": "Countdown Title",
+		"value": "Countdown 2",
+		"tooltip": "Title to be displayed on countdown overlay.",
+		"group": "Reward 2 - Countdown Settings"
+	},
+	"CountdownLength2": {
+		"type": "numberbox",
+		"label": "Time in Seconds to Add to Countdown",
+		"value": 600,
+		"tooltip": "Set the amount of time in seconds to add to the timer.",
+		"group": "Reward 2 - Countdown Settings"
+	},
+	"ResetCommand2": {
+		"type": "textbox",
+		"label": "Command Name for Resetting Countdown",
+		"value": "!reset2",
+		"tooltip": "Set the command name that can be used by moderator+ to reset timer to closest countdown multiple or by a specific amount of seconds.",
+		"group": "Reward 2 - Countdown Settings"
+	},
+	"RedeemedSFXPath2": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to SFX at Redemption File",
+		"tooltip": "Specify the path to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Reward 2 - Countdown Settings"
+	},
+	"RedeemedSFXVolume2": {
+		"type": "slider",
+		"label": "Reward 2 - Countdown Settings",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 2,
+		"tooltip": "Specify the volume to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Reward 2 - Countdown Settings"
+	},
+	"RedeemedSFXDelay2": {
+		"type": "numberbox",
+		"label": "SFX at Redemption Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Reward 2 - Countdown Settings"
+	},
+	"FinishedSFXPath2": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to SFX at Finish File",
+		"tooltip": "Specify the path to the SFX effect to trigger at the end of the countdown.",
+		"group": "Reward 2 - Countdown Settings"
+	},
+	"FinishedSFXVolume2": {
+		"type": "slider",
+		"label": "SFX at Finish Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 2,
+		"tooltip": "Specify the volume to the SFX effect to trigger at the end of the countdown.",
+		"group": "Reward 2 - Countdown Settings"
+	},
+
+
+	"TimeoutType2": {
+		"type": "dropdown",
+		"label": "Timeout Type",
+		"value": "Fixed",
+		"tooltip": "Fixed.",
+		"items": [
+			"Fixed",
+			"Reward Redeemer",
+			"Reward Message"
+		],
+		"group": "Reward 2 - Timeout User Settings"
+	},
+	"TimeoutFixedUser2": {
+		"type": "textbox",
+		"value": "",
+		"label": "Fixed Username to Timeout",
+		"tooltip": "If timeout type is set to Fixed this will be the user that is timed out.",
+		"group": "Reward 2 - Timeout User Settings"
+	},
+	"TimeoutDuration2": {
+		"type": "numberbox",
+		"label": "Timeout Duration",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to timeout user.",
+		"group": "Reward 2 - Timeout User Settings"
+	},
+
+
+	"UseRewardCost2": {
+		"type": "checkbox",
+		"value": true,
+		"label": "Use Reward Amount",
+		"tooltip": "If set to true it will assign currency to user equal to reward cost.",
+		"group": "Reward 2 - Currency Exchange Settings"
+	},
+	"CurrencyAmount2": {
+		"type": "numberbox",
+		"label": "Currency Amount",
+		"value": 10,
+		"tooltip": "Set the amount of currency to give to user on redemption.",
+		"group": "Reward 2 - Currency Exchange Settings"
+	},
+
+
+	"AHKPath2": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to AutoHotkey script",
+		"tooltip": "Specify the path to the AutoHotKey script to trigger.",
+		"group": "Reward 2 - AutoHotkey Settings"
+	},
+	"AHKArguments2": {
+		"type": "textbox",
+		"value": "{username}, {message}, {rewardtitle}, {rewardcost}, {timestamp}",
+		"label": "Arguments to Pass to AutoHotkey Script",
+		"tooltip": "Enter a comma separated list of arguments to pass to script. {username}, {message}, {rewardtitle}, {rewardcost}, {timestamp} can be used to get user and reward info to pass into script.",
+		"group": "Reward 2 - AutoHotkey Settings"
+	},
+	"AHKDelay2": {
+		"type": "numberbox",
+		"label": "AutoHotkey Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to process next reward.",
+		"group": "Reward 2 - AutoHotkey Settings"
+	},
+
+
+	"btnRewardHeader3": {
+		"type": "button",
+		"label": "V Reward 3 Settings V",
+		"tooltip": "Jump to Save button.",
+		"wsevent": "",
+		"function": "PageDown",
+		"group": "   "
+	},
+	"RewardName3": {
+		"type": "textbox",
+		"value": "",
+		"label": "Title of Twitch Reward",
+		"tooltip": "Specify the name of the Twitch Reward that will trigger this event when detected.",
+		"group": "   "
+	},
+	"RewardType3": {
+		"type": "dropdown",
+		"label": "Reward Type",
+		"value": "Alert - Gif and/or SFX",
+		"tooltip": "Select the type of reward. Then match the associated number with the below inputs that can be used.",
+		"items": [
+			"Alert - Gif and/or SFX",
+			"Countdown Overlay",
+			"Timeout User",
+			"Convert Channel Points to Currency",
+			"AutoHotkey"
+		],
+		"group": "Reward 3 - Mandatory Settings"
+	},
+	"RewardActivationType3": {
+		"type": "dropdown",
+		"label": "Activation Point",
+		"value": "Immediate",
+		"tooltip": "Set whether the reward should be triggered immediately on reward redemption by viewer, or when the reward is accepted/rejected from the reward queue. Note: twitch currently doesn't return a way to distinguish between Accept or Reject so Reject will still trigger the reward.",
+		"items": [
+			"Immediate",
+			"On Reward Queue Accept/Reject"
+		],
+		"group": "Reward 3 - Mandatory Settings"
+	},
+
+
+	"AlertMediaPath3": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Path to Image/Gif File",
+		"tooltip": "Specify the path to the Image/Gif to trigger.",
+		"group": "Reward 3 - Alert Settings"
+	},
+	"AlertText3": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Text",
+		"tooltip": "Text to be displayed with the alert.",
+		"group": "Reward 3 - Alert Settings"
+	},
+	"AlertSFXPath3": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Path to SFX File",
+		"tooltip": "Specify the path to the SFX effect to trigger.",
+		"group": "Reward 3 - Alert Settings"
+	},
+	"AlertSFXVolume3": {
+		"type": "slider",
+		"label": "Reward 3 - Alert SFX Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 3,
+		"tooltip": "Specify the volume to the SFX effect to trigger.",
+		"group": "Reward 3 - Alert Settings"
+	},
+	"AlertSFXDelay3": {
+		"type": "numberbox",
+		"label": "Alert SFX Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Reward 3 - Alert Settings"
+	},
+
+
+	"CountdownTitle3": {
+		"type": "textbox",
+		"label": "Countdown Title",
+		"value": "Countdown 3",
+		"tooltip": "Title to be displayed on countdown overlay.",
+		"group": "Reward 3 - Countdown Settings"
+	},
+	"CountdownLength3": {
+		"type": "numberbox",
+		"label": "Time in Seconds to Add to Countdown",
+		"value": 600,
+		"tooltip": "Set the amount of time in seconds to add to the timer.",
+		"group": "Reward 3 - Countdown Settings"
+	},
+	"ResetCommand3": {
+		"type": "textbox",
+		"label": "Command Name for Resetting Countdown",
+		"value": "!reset3",
+		"tooltip": "Set the command name that can be used by moderator+ to reset timer to closest countdown multiple or by a specific amount of seconds.",
+		"group": "Reward 3 - Countdown Settings"
+	},
+	"RedeemedSFXPath3": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to SFX at Redemption File",
+		"tooltip": "Specify the path to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Reward 3 - Countdown Settings"
+	},
+	"RedeemedSFXVolume3": {
+		"type": "slider",
+		"label": "Reward 3 - Countdown Settings",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 3,
+		"tooltip": "Specify the volume to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Reward 3 - Countdown Settings"
+	},
+	"RedeemedSFXDelay3": {
+		"type": "numberbox",
+		"label": "SFX at Redemption Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Reward 3 - Countdown Settings"
+	},
+	"FinishedSFXPath3": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to SFX at Finish File",
+		"tooltip": "Specify the path to the SFX effect to trigger at the end of the countdown.",
+		"group": "Reward 3 - Countdown Settings"
+	},
+	"FinishedSFXVolume3": {
+		"type": "slider",
+		"label": "SFX at Finish Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 3,
+		"tooltip": "Specify the volume to the SFX effect to trigger at the end of the countdown.",
+		"group": "Reward 3 - Countdown Settings"
+	},
+
+
+	"TimeoutType3": {
+		"type": "dropdown",
+		"label": "Timeout Type",
+		"value": "Fixed",
+		"tooltip": "Fixed.",
+		"items": [
+			"Fixed",
+			"Reward Redeemer",
+			"Reward Message"
+		],
+		"group": "Reward 3 - Timeout User Settings"
+	},
+	"TimeoutFixedUser3": {
+		"type": "textbox",
+		"value": "",
+		"label": "Fixed Username to Timeout",
+		"tooltip": "If timeout type is set to Fixed this will be the user that is timed out.",
+		"group": "Reward 3 - Timeout User Settings"
+	},
+	"TimeoutDuration3": {
+		"type": "numberbox",
+		"label": "Timeout Duration",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to timeout user.",
+		"group": "Reward 3 - Timeout User Settings"
+	},
+
+
+	"UseRewardCost3": {
+		"type": "checkbox",
+		"value": true,
+		"label": "Use Reward Amount",
+		"tooltip": "If set to true it will assign currency to user equal to reward cost.",
+		"group": "Reward 3 - Currency Exchange Settings"
+	},
+	"CurrencyAmount3": {
+		"type": "numberbox",
+		"label": "Currency Amount",
+		"value": 10,
+		"tooltip": "Set the amount of currency to give to user on redemption.",
+		"group": "Reward 3 - Currency Exchange Settings"
+	},
+
+
+	"AHKPath3": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to AutoHotkey script",
+		"tooltip": "Specify the path to the AutoHotKey script to trigger.",
+		"group": "Reward 3 - AutoHotkey Settings"
+	},
+	"AHKArguments3": {
+		"type": "textbox",
+		"value": "{username}, {message}, {rewardtitle}, {rewardcost}, {timestamp}",
+		"label": "Arguments to Pass to AutoHotkey Script",
+		"tooltip": "Enter a comma separated list of arguments to pass to script. {username}, {message}, {rewardtitle}, {rewardcost}, {timestamp} can be used to get user and reward info to pass into script.",
+		"group": "Reward 3 - AutoHotkey Settings"
+	},
+	"AHKDelay3": {
+		"type": "numberbox",
+		"label": "AutoHotkey Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to process next reward.",
+		"group": "Reward 3 - AutoHotkey Settings"
+	},
+
+
+	"btnRewardHeader4": {
+		"type": "button",
+		"label": "V Reward 4 Settings V",
+		"tooltip": "Jump to Save button.",
+		"wsevent": "",
+		"function": "PageDown",
+		"group": "    "
+	},
+	"RewardName4": {
+		"type": "textbox",
+		"value": "",
+		"label": "Title of Twitch Reward",
+		"tooltip": "Specify the name of the Twitch Reward that will trigger this event when detected.",
+		"group": "    "
+	},
+	"RewardType4": {
+		"type": "dropdown",
+		"label": "Reward Type",
+		"value": "Alert - Gif and/or SFX",
+		"tooltip": "Select the type of reward. Then match the associated number with the below inputs that can be used.",
+		"items": [
+			"Alert - Gif and/or SFX",
+			"Countdown Overlay",
+			"Timeout User",
+			"Convert Channel Points to Currency",
+			"AutoHotkey"
+		],
+		"group": "Reward 4 - Mandatory Settings"
+	},
+	"RewardActivationType4": {
+		"type": "dropdown",
+		"label": "Activation Point",
+		"value": "Immediate",
+		"tooltip": "Set whether the reward should be triggered immediately on reward redemption by viewer, or when the reward is accepted/rejected from the reward queue. Note: twitch currently doesn't return a way to distinguish between Accept or Reject so Reject will still trigger the reward.",
+		"items": [
+			"Immediate",
+			"On Reward Queue Accept/Reject"
+		],
+		"group": "Reward 4 - Mandatory Settings"
+	},
+
+
+	"AlertMediaPath4": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Path to Image/Gif File",
+		"tooltip": "Specify the path to the Image/Gif to trigger.",
+		"group": "Reward 4 - Alert Settings"
+	},
+	"AlertText4": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Text",
+		"tooltip": "Text to be displayed with the alert.",
+		"group": "Reward 4 - Alert Settings"
+	},
+	"AlertSFXPath4": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Path to SFX File",
+		"tooltip": "Specify the path to the SFX effect to trigger.",
+		"group": "Reward 4 - Alert Settings"
+	},
+	"AlertSFXVolume4": {
+		"type": "slider",
+		"label": "Reward 4 - Alert SFX Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 4,
+		"tooltip": "Specify the volume to the SFX effect to trigger.",
+		"group": "Reward 4 - Alert Settings"
+	},
+	"AlertSFXDelay4": {
+		"type": "numberbox",
+		"label": "Alert SFX Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Reward 4 - Alert Settings"
+	},
+
+
+	"CountdownTitle4": {
+		"type": "textbox",
+		"label": "Countdown Title",
+		"value": "Countdown 4",
+		"tooltip": "Title to be displayed on countdown overlay.",
+		"group": "Reward 4 - Countdown Settings"
+	},
+	"CountdownLength4": {
+		"type": "numberbox",
+		"label": "Time in Seconds to Add to Countdown",
+		"value": 600,
+		"tooltip": "Set the amount of time in seconds to add to the timer.",
+		"group": "Reward 4 - Countdown Settings"
+	},
+	"ResetCommand4": {
+		"type": "textbox",
+		"label": "Command Name for Resetting Countdown",
+		"value": "!reset4",
+		"tooltip": "Set the command name that can be used by moderator+ to reset timer to closest countdown multiple or by a specific amount of seconds.",
+		"group": "Reward 4 - Countdown Settings"
+	},
+	"RedeemedSFXPath4": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to SFX at Redemption File",
+		"tooltip": "Specify the path to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Reward 4 - Countdown Settings"
+	},
+	"RedeemedSFXVolume4": {
+		"type": "slider",
+		"label": "Reward 4 - Countdown Settings",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 4,
+		"tooltip": "Specify the volume to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Reward 4 - Countdown Settings"
+	},
+	"RedeemedSFXDelay4": {
+		"type": "numberbox",
+		"label": "SFX at Redemption Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Reward 4 - Countdown Settings"
+	},
+	"FinishedSFXPath4": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to SFX at Finish File",
+		"tooltip": "Specify the path to the SFX effect to trigger at the end of the countdown.",
+		"group": "Reward 4 - Countdown Settings"
+	},
+	"FinishedSFXVolume4": {
+		"type": "slider",
+		"label": "SFX at Finish Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 4,
+		"tooltip": "Specify the volume to the SFX effect to trigger at the end of the countdown.",
+		"group": "Reward 4 - Countdown Settings"
+	},
+
+
+	"TimeoutType4": {
+		"type": "dropdown",
+		"label": "Timeout Type",
+		"value": "Fixed",
+		"tooltip": "Fixed.",
+		"items": [
+			"Fixed",
+			"Reward Redeemer",
+			"Reward Message"
+		],
+		"group": "Reward 4 - Timeout User Settings"
+	},
+	"TimeoutFixedUser4": {
+		"type": "textbox",
+		"value": "",
+		"label": "Fixed Username to Timeout",
+		"tooltip": "If timeout type is set to Fixed this will be the user that is timed out.",
+		"group": "Reward 4 - Timeout User Settings"
+	},
+	"TimeoutDuration4": {
+		"type": "numberbox",
+		"label": "Timeout Duration",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to timeout user.",
+		"group": "Reward 4 - Timeout User Settings"
+	},
+
+
+	"UseRewardCost4": {
+		"type": "checkbox",
+		"value": true,
+		"label": "Use Reward Amount",
+		"tooltip": "If set to true it will assign currency to user equal to reward cost.",
+		"group": "Reward 4 - Currency Exchange Settings"
+	},
+	"CurrencyAmount4": {
+		"type": "numberbox",
+		"label": "Currency Amount",
+		"value": 10,
+		"tooltip": "Set the amount of currency to give to user on redemption.",
+		"group": "Reward 4 - Currency Exchange Settings"
+	},
+
+
+	"AHKPath4": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to AutoHotkey script",
+		"tooltip": "Specify the path to the AutoHotKey script to trigger.",
+		"group": "Reward 4 - AutoHotkey Settings"
+	},
+	"AHKArguments4": {
+		"type": "textbox",
+		"value": "{username}, {message}, {rewardtitle}, {rewardcost}, {timestamp}",
+		"label": "Arguments to Pass to AutoHotkey Script",
+		"tooltip": "Enter a comma separated list of arguments to pass to script. {username}, {message}, {rewardtitle}, {rewardcost}, {timestamp} can be used to get user and reward info to pass into script.",
+		"group": "Reward 4 - AutoHotkey Settings"
+	},
+	"AHKDelay4": {
+		"type": "numberbox",
+		"label": "AutoHotkey Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to process next reward.",
+		"group": "Reward 4 - AutoHotkey Settings"
+	},
+
+
+	"btnRewardHeader5": {
+		"type": "button",
+		"label": "V Reward 5 Settings V",
+		"tooltip": "Jump to Save button.",
+		"wsevent": "",
+		"function": "PageDown",
+		"group": "     "
+	},
+	"RewardName5": {
+		"type": "textbox",
+		"value": "",
+		"label": "Title of Twitch Reward",
+		"tooltip": "Specify the name of the Twitch Reward that will trigger this event when detected.",
+		"group": "     "
+	},
+	"RewardType5": {
+		"type": "dropdown",
+		"label": "Reward Type",
+		"value": "Alert - Gif and/or SFX",
+		"tooltip": "Select the type of reward. Then match the associated number with the below inputs that can be used.",
+		"items": [
+			"Alert - Gif and/or SFX",
+			"Countdown Overlay",
+			"Timeout User",
+			"Convert Channel Points to Currency",
+			"AutoHotkey"
+		],
+		"group": "Reward 5 - Mandatory Settings"
+	},
+	"RewardActivationType5": {
+		"type": "dropdown",
+		"label": "Activation Point",
+		"value": "Immediate",
+		"tooltip": "Set whether the reward should be triggered immediately on reward redemption by viewer, or when the reward is accepted/rejected from the reward queue. Note: twitch currently doesn't return a way to distinguish between Accept or Reject so Reject will still trigger the reward.",
+		"items": [
+			"Immediate",
+			"On Reward Queue Accept/Reject"
+		],
+		"group": "Reward 5 - Mandatory Settings"
+	},
+
+
+	"AlertMediaPath5": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Path to Image/Gif File",
+		"tooltip": "Specify the path to the Image/Gif to trigger.",
+		"group": "Reward 5 - Alert Settings"
+	},
+	"AlertText5": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Text",
+		"tooltip": "Text to be displayed with the alert.",
+		"group": "Reward 5 - Alert Settings"
+	},
+	"AlertSFXPath5": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Path to SFX File",
+		"tooltip": "Specify the path to the SFX effect to trigger.",
+		"group": "Reward 5 - Alert Settings"
+	},
+	"AlertSFXVolume5": {
+		"type": "slider",
+		"label": "Reward 5 - Alert SFX Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 5,
+		"tooltip": "Specify the volume to the SFX effect to trigger.",
+		"group": "Reward 5 - Alert Settings"
+	},
+	"AlertSFXDelay5": {
+		"type": "numberbox",
+		"label": "Alert SFX Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Reward 5 - Alert Settings"
+	},
+
+
+	"CountdownTitle5": {
+		"type": "textbox",
+		"label": "Countdown Title",
+		"value": "Countdown 5",
+		"tooltip": "Title to be displayed on countdown overlay.",
+		"group": "Reward 5 - Countdown Settings"
+	},
+	"CountdownLength5": {
+		"type": "numberbox",
+		"label": "Time in Seconds to Add to Countdown",
+		"value": 600,
+		"tooltip": "Set the amount of time in seconds to add to the timer.",
+		"group": "Reward 5 - Countdown Settings"
+	},
+	"ResetCommand5": {
+		"type": "textbox",
+		"label": "Command Name for Resetting Countdown",
+		"value": "!reset5",
+		"tooltip": "Set the command name that can be used by moderator+ to reset timer to closest countdown multiple or by a specific amount of seconds.",
+		"group": "Reward 5 - Countdown Settings"
+	},
+	"RedeemedSFXPath5": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to SFX at Redemption File",
+		"tooltip": "Specify the path to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Reward 5 - Countdown Settings"
+	},
+	"RedeemedSFXVolume5": {
+		"type": "slider",
+		"label": "Reward 5 - Countdown Settings",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 5,
+		"tooltip": "Specify the volume to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Reward 5 - Countdown Settings"
+	},
+	"RedeemedSFXDelay5": {
+		"type": "numberbox",
+		"label": "SFX at Redemption Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Reward 5 - Countdown Settings"
+	},
+	"FinishedSFXPath5": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to SFX at Finish File",
+		"tooltip": "Specify the path to the SFX effect to trigger at the end of the countdown.",
+		"group": "Reward 5 - Countdown Settings"
+	},
+	"FinishedSFXVolume5": {
+		"type": "slider",
+		"label": "SFX at Finish Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 5,
+		"tooltip": "Specify the volume to the SFX effect to trigger at the end of the countdown.",
+		"group": "Reward 5 - Countdown Settings"
+	},
+
+
+	"TimeoutType5": {
+		"type": "dropdown",
+		"label": "Timeout Type",
+		"value": "Fixed",
+		"tooltip": "Fixed.",
+		"items": [
+			"Fixed",
+			"Reward Redeemer",
+			"Reward Message"
+		],
+		"group": "Reward 5 - Timeout User Settings"
+	},
+	"TimeoutFixedUser5": {
+		"type": "textbox",
+		"value": "",
+		"label": "Fixed Username to Timeout",
+		"tooltip": "If timeout type is set to Fixed this will be the user that is timed out.",
+		"group": "Reward 5 - Timeout User Settings"
+	},
+	"TimeoutDuration5": {
+		"type": "numberbox",
+		"label": "Timeout Duration",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to timeout user.",
+		"group": "Reward 5 - Timeout User Settings"
+	},
+
+
+	"UseRewardCost5": {
+		"type": "checkbox",
+		"value": true,
+		"label": "Use Reward Amount",
+		"tooltip": "If set to true it will assign currency to user equal to reward cost.",
+		"group": "Reward 5 - Currency Exchange Settings"
+	},
+	"CurrencyAmount5": {
+		"type": "numberbox",
+		"label": "Currency Amount",
+		"value": 10,
+		"tooltip": "Set the amount of currency to give to user on redemption.",
+		"group": "Reward 5 - Currency Exchange Settings"
+	},
+
+
+	"AHKPath5": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to AutoHotkey script",
+		"tooltip": "Specify the path to the AutoHotKey script to trigger.",
+		"group": "Reward 5 - AutoHotkey Settings"
+	},
+	"AHKArguments5": {
+		"type": "textbox",
+		"value": "{username}, {message}, {rewardtitle}, {rewardcost}, {timestamp}",
+		"label": "Arguments to Pass to AutoHotkey Script",
+		"tooltip": "Enter a comma separated list of arguments to pass to script. {username}, {message}, {rewardtitle}, {rewardcost}, {timestamp} can be used to get user and reward info to pass into script.",
+		"group": "Reward 5 - AutoHotkey Settings"
+	},
+	"AHKDelay5": {
+		"type": "numberbox",
+		"label": "AutoHotkey Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to process next reward.",
+		"group": "Reward 5 - AutoHotkey Settings"
+	},
+
+
+	"btnRewardHeader6": {
+		"type": "button",
+		"label": "V Reward 6 Settings V",
+		"tooltip": "Jump to Save button.",
+		"wsevent": "",
+		"function": "PageDown",
+		"group": "      "
+	},
+	"RewardName6": {
+		"type": "textbox",
+		"value": "",
+		"label": "Title of Twitch Reward",
+		"tooltip": "Specify the name of the Twitch Reward that will trigger this event when detected.",
+		"group": "      "
+	},
+	"RewardType6": {
+		"type": "dropdown",
+		"label": "Reward Type",
+		"value": "Alert - Gif and/or SFX",
+		"tooltip": "Select the type of reward. Then match the associated number with the below inputs that can be used.",
+		"items": [
+			"Alert - Gif and/or SFX",
+			"Countdown Overlay",
+			"Timeout User",
+			"Convert Channel Points to Currency",
+			"AutoHotkey"
+		],
+		"group": "Reward 6 - Mandatory Settings"
+	},
+	"RewardActivationType6": {
+		"type": "dropdown",
+		"label": "Activation Point",
+		"value": "Immediate",
+		"tooltip": "Set whether the reward should be triggered immediately on reward redemption by viewer, or when the reward is accepted/rejected from the reward queue. Note: twitch currently doesn't return a way to distinguish between Accept or Reject so Reject will still trigger the reward.",
+		"items": [
+			"Immediate",
+			"On Reward Queue Accept/Reject"
+		],
+		"group": "Reward 6 - Mandatory Settings"
+	},
+
+
+	"AlertMediaPath6": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Path to Image/Gif File",
+		"tooltip": "Specify the path to the Image/Gif to trigger.",
+		"group": "Reward 6 - Alert Settings"
+	},
+	"AlertText6": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Text",
+		"tooltip": "Text to be displayed with the alert.",
+		"group": "Reward 6 - Alert Settings"
+	},
+	"AlertSFXPath6": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Path to SFX File",
+		"tooltip": "Specify the path to the SFX effect to trigger.",
+		"group": "Reward 6 - Alert Settings"
+	},
+	"AlertSFXVolume6": {
+		"type": "slider",
+		"label": "Reward 6 - Alert SFX Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 6,
+		"tooltip": "Specify the volume to the SFX effect to trigger.",
+		"group": "Reward 6 - Alert Settings"
+	},
+	"AlertSFXDelay6": {
+		"type": "numberbox",
+		"label": "Alert SFX Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Reward 6 - Alert Settings"
+	},
+
+
+	"CountdownTitle6": {
+		"type": "textbox",
+		"label": "Countdown Title",
+		"value": "Countdown 6",
+		"tooltip": "Title to be displayed on countdown overlay.",
+		"group": "Reward 6 - Countdown Settings"
+	},
+	"CountdownLength6": {
+		"type": "numberbox",
+		"label": "Time in Seconds to Add to Countdown",
+		"value": 600,
+		"tooltip": "Set the amount of time in seconds to add to the timer.",
+		"group": "Reward 6 - Countdown Settings"
+	},
+	"ResetCommand6": {
+		"type": "textbox",
+		"label": "Command Name for Resetting Countdown",
+		"value": "!reset6",
+		"tooltip": "Set the command name that can be used by moderator+ to reset timer to closest countdown multiple or by a specific amount of seconds.",
+		"group": "Reward 6 - Countdown Settings"
+	},
+	"RedeemedSFXPath6": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to SFX at Redemption File",
+		"tooltip": "Specify the path to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Reward 6 - Countdown Settings"
+	},
+	"RedeemedSFXVolume6": {
+		"type": "slider",
+		"label": "Reward 6 - Countdown Settings",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 6,
+		"tooltip": "Specify the volume to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Reward 6 - Countdown Settings"
+	},
+	"RedeemedSFXDelay6": {
+		"type": "numberbox",
+		"label": "SFX at Redemption Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Reward 6 - Countdown Settings"
+	},
+	"FinishedSFXPath6": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to SFX at Finish File",
+		"tooltip": "Specify the path to the SFX effect to trigger at the end of the countdown.",
+		"group": "Reward 6 - Countdown Settings"
+	},
+	"FinishedSFXVolume6": {
+		"type": "slider",
+		"label": "SFX at Finish Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 6,
+		"tooltip": "Specify the volume to the SFX effect to trigger at the end of the countdown.",
+		"group": "Reward 6 - Countdown Settings"
+	},
+
+
+	"TimeoutType6": {
+		"type": "dropdown",
+		"label": "Timeout Type",
+		"value": "Fixed",
+		"tooltip": "Fixed.",
+		"items": [
+			"Fixed",
+			"Reward Redeemer",
+			"Reward Message"
+		],
+		"group": "Reward 6 - Timeout User Settings"
+	},
+	"TimeoutFixedUser6": {
+		"type": "textbox",
+		"value": "",
+		"label": "Fixed Username to Timeout",
+		"tooltip": "If timeout type is set to Fixed this will be the user that is timed out.",
+		"group": "Reward 6 - Timeout User Settings"
+	},
+	"TimeoutDuration6": {
+		"type": "numberbox",
+		"label": "Timeout Duration",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to timeout user.",
+		"group": "Reward 6 - Timeout User Settings"
+	},
+
+
+	"UseRewardCost6": {
+		"type": "checkbox",
+		"value": true,
+		"label": "Use Reward Amount",
+		"tooltip": "If set to true it will assign currency to user equal to reward cost.",
+		"group": "Reward 6 - Currency Exchange Settings"
+	},
+	"CurrencyAmount6": {
+		"type": "numberbox",
+		"label": "Currency Amount",
+		"value": 10,
+		"tooltip": "Set the amount of currency to give to user on redemption.",
+		"group": "Reward 6 - Currency Exchange Settings"
+	},
+
+
+	"AHKPath6": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to AutoHotkey script",
+		"tooltip": "Specify the path to the AutoHotKey script to trigger.",
+		"group": "Reward 6 - AutoHotkey Settings"
+	},
+	"AHKArguments6": {
+		"type": "textbox",
+		"value": "{username}, {message}, {rewardtitle}, {rewardcost}, {timestamp}",
+		"label": "Arguments to Pass to AutoHotkey Script",
+		"tooltip": "Enter a comma separated list of arguments to pass to script. {username}, {message}, {rewardtitle}, {rewardcost}, {timestamp} can be used to get user and reward info to pass into script.",
+		"group": "Reward 6 - AutoHotkey Settings"
+	},
+	"AHKDelay6": {
+		"type": "numberbox",
+		"label": "AutoHotkey Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to process next reward.",
+		"group": "Reward 6 - AutoHotkey Settings"
+	},
+
+
+	"btnRewardHeader7": {
+		"type": "button",
+		"label": "V Reward 7 Settings V",
+		"tooltip": "Jump to Save button.",
+		"wsevent": "",
+		"function": "PageDown",
+		"group": "       "
+	},
+	"RewardName7": {
+		"type": "textbox",
+		"value": "",
+		"label": "Title of Twitch Reward",
+		"tooltip": "Specify the name of the Twitch Reward that will trigger this event when detected.",
+		"group": "       "
+	},
+	"RewardType7": {
+		"type": "dropdown",
+		"label": "Reward Type",
+		"value": "Alert - Gif and/or SFX",
+		"tooltip": "Select the type of reward. Then match the associated number with the below inputs that can be used.",
+		"items": [
+			"Alert - Gif and/or SFX",
+			"Countdown Overlay",
+			"Timeout User",
+			"Convert Channel Points to Currency",
+			"AutoHotkey"
+		],
+		"group": "Reward 7 - Mandatory Settings"
+	},
+	"RewardActivationType7": {
+		"type": "dropdown",
+		"label": "Activation Point",
+		"value": "Immediate",
+		"tooltip": "Set whether the reward should be triggered immediately on reward redemption by viewer, or when the reward is accepted/rejected from the reward queue. Note: twitch currently doesn't return a way to distinguish between Accept or Reject so Reject will still trigger the reward.",
+		"items": [
+			"Immediate",
+			"On Reward Queue Accept/Reject"
+		],
+		"group": "Reward 7 - Mandatory Settings"
+	},
+
+
+	"AlertMediaPath7": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Path to Image/Gif File",
+		"tooltip": "Specify the path to the Image/Gif to trigger.",
+		"group": "Reward 7 - Alert Settings"
+	},
+	"AlertText7": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Text",
+		"tooltip": "Text to be displayed with the alert.",
+		"group": "Reward 7 - Alert Settings"
+	},
+	"AlertSFXPath7": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Path to SFX File",
+		"tooltip": "Specify the path to the SFX effect to trigger.",
+		"group": "Reward 7 - Alert Settings"
+	},
+	"AlertSFXVolume7": {
+		"type": "slider",
+		"label": "Reward 7 - Alert SFX Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 7,
+		"tooltip": "Specify the volume to the SFX effect to trigger.",
+		"group": "Reward 7 - Alert Settings"
+	},
+	"AlertSFXDelay7": {
+		"type": "numberbox",
+		"label": "Alert SFX Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Reward 7 - Alert Settings"
+	},
+
+
+	"CountdownTitle7": {
+		"type": "textbox",
+		"label": "Countdown Title",
+		"value": "Countdown 7",
+		"tooltip": "Title to be displayed on countdown overlay.",
+		"group": "Reward 7 - Countdown Settings"
+	},
+	"CountdownLength7": {
+		"type": "numberbox",
+		"label": "Time in Seconds to Add to Countdown",
+		"value": 600,
+		"tooltip": "Set the amount of time in seconds to add to the timer.",
+		"group": "Reward 7 - Countdown Settings"
+	},
+	"ResetCommand7": {
+		"type": "textbox",
+		"label": "Command Name for Resetting Countdown",
+		"value": "!reset7",
+		"tooltip": "Set the command name that can be used by moderator+ to reset timer to closest countdown multiple or by a specific amount of seconds.",
+		"group": "Reward 7 - Countdown Settings"
+	},
+	"RedeemedSFXPath7": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to SFX at Redemption File",
+		"tooltip": "Specify the path to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Reward 7 - Countdown Settings"
+	},
+	"RedeemedSFXVolume7": {
+		"type": "slider",
+		"label": "Reward 7 - Countdown Settings",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 7,
+		"tooltip": "Specify the volume to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Reward 7 - Countdown Settings"
+	},
+	"RedeemedSFXDelay7": {
+		"type": "numberbox",
+		"label": "SFX at Redemption Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Reward 7 - Countdown Settings"
+	},
+	"FinishedSFXPath7": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to SFX at Finish File",
+		"tooltip": "Specify the path to the SFX effect to trigger at the end of the countdown.",
+		"group": "Reward 7 - Countdown Settings"
+	},
+	"FinishedSFXVolume7": {
+		"type": "slider",
+		"label": "SFX at Finish Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 7,
+		"tooltip": "Specify the volume to the SFX effect to trigger at the end of the countdown.",
+		"group": "Reward 7 - Countdown Settings"
+	},
+
+
+	"TimeoutType7": {
+		"type": "dropdown",
+		"label": "Timeout Type",
+		"value": "Fixed",
+		"tooltip": "Fixed.",
+		"items": [
+			"Fixed",
+			"Reward Redeemer",
+			"Reward Message"
+		],
+		"group": "Reward 7 - Timeout User Settings"
+	},
+	"TimeoutFixedUser7": {
+		"type": "textbox",
+		"value": "",
+		"label": "Fixed Username to Timeout",
+		"tooltip": "If timeout type is set to Fixed this will be the user that is timed out.",
+		"group": "Reward 7 - Timeout User Settings"
+	},
+	"TimeoutDuration7": {
+		"type": "numberbox",
+		"label": "Timeout Duration",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to timeout user.",
+		"group": "Reward 7 - Timeout User Settings"
+	},
+
+
+	"UseRewardCost7": {
+		"type": "checkbox",
+		"value": true,
+		"label": "Use Reward Amount",
+		"tooltip": "If set to true it will assign currency to user equal to reward cost.",
+		"group": "Reward 7 - Currency Exchange Settings"
+	},
+	"CurrencyAmount7": {
+		"type": "numberbox",
+		"label": "Currency Amount",
+		"value": 10,
+		"tooltip": "Set the amount of currency to give to user on redemption.",
+		"group": "Reward 7 - Currency Exchange Settings"
+	},
+
+
+	"AHKPath7": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to AutoHotkey script",
+		"tooltip": "Specify the path to the AutoHotKey script to trigger.",
+		"group": "Reward 7 - AutoHotkey Settings"
+	},
+	"AHKArguments7": {
+		"type": "textbox",
+		"value": "{username}, {message}, {rewardtitle}, {rewardcost}, {timestamp}",
+		"label": "Arguments to Pass to AutoHotkey Script",
+		"tooltip": "Enter a comma separated list of arguments to pass to script. {username}, {message}, {rewardtitle}, {rewardcost}, {timestamp} can be used to get user and reward info to pass into script.",
+		"group": "Reward 7 - AutoHotkey Settings"
+	},
+	"AHKDelay7": {
+		"type": "numberbox",
+		"label": "AutoHotkey Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to process next reward.",
+		"group": "Reward 7 - AutoHotkey Settings"
+	},
+
+
+	"btnRewardHeader8": {
+		"type": "button",
+		"label": "V Reward 8 Settings V",
+		"tooltip": "Jump to Save button.",
+		"wsevent": "",
+		"function": "PageDown",
+		"group": "        "
+	},
+	"RewardName8": {
+		"type": "textbox",
+		"value": "",
+		"label": "Title of Twitch Reward",
+		"tooltip": "Specify the name of the Twitch Reward that will trigger this event when detected.",
+		"group": "        "
+	},
+	"RewardType8": {
+		"type": "dropdown",
+		"label": "Reward Type",
+		"value": "Alert - Gif and/or SFX",
+		"tooltip": "Select the type of reward. Then match the associated number with the below inputs that can be used.",
+		"items": [
+			"Alert - Gif and/or SFX",
+			"Countdown Overlay",
+			"Timeout User",
+			"Convert Channel Points to Currency",
+			"AutoHotkey"
+		],
+		"group": "Reward 8 - Mandatory Settings"
+	},
+	"RewardActivationType8": {
+		"type": "dropdown",
+		"label": "Activation Point",
+		"value": "Immediate",
+		"tooltip": "Set whether the reward should be triggered immediately on reward redemption by viewer, or when the reward is accepted/rejected from the reward queue. Note: twitch currently doesn't return a way to distinguish between Accept or Reject so Reject will still trigger the reward.",
+		"items": [
+			"Immediate",
+			"On Reward Queue Accept/Reject"
+		],
+		"group": "Reward 8 - Mandatory Settings"
+	},
+
+
+	"AlertMediaPath8": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Path to Image/Gif File",
+		"tooltip": "Specify the path to the Image/Gif to trigger.",
+		"group": "Reward 8 - Alert Settings"
+	},
+	"AlertText8": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Text",
+		"tooltip": "Text to be displayed with the alert.",
+		"group": "Reward 8 - Alert Settings"
+	},
+	"AlertSFXPath8": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Path to SFX File",
+		"tooltip": "Specify the path to the SFX effect to trigger.",
+		"group": "Reward 8 - Alert Settings"
+	},
+	"AlertSFXVolume8": {
+		"type": "slider",
+		"label": "Reward 8 - Alert SFX Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 8,
+		"tooltip": "Specify the volume to the SFX effect to trigger.",
+		"group": "Reward 8 - Alert Settings"
+	},
+	"AlertSFXDelay8": {
+		"type": "numberbox",
+		"label": "Alert SFX Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Reward 8 - Alert Settings"
+	},
+
+
+	"CountdownTitle8": {
+		"type": "textbox",
+		"label": "Countdown Title",
+		"value": "Countdown 8",
+		"tooltip": "Title to be displayed on countdown overlay.",
+		"group": "Reward 8 - Countdown Settings"
+	},
+	"CountdownLength8": {
+		"type": "numberbox",
+		"label": "Time in Seconds to Add to Countdown",
+		"value": 600,
+		"tooltip": "Set the amount of time in seconds to add to the timer.",
+		"group": "Reward 8 - Countdown Settings"
+	},
+	"ResetCommand8": {
+		"type": "textbox",
+		"label": "Command Name for Resetting Countdown",
+		"value": "!reset8",
+		"tooltip": "Set the command name that can be used by moderator+ to reset timer to closest countdown multiple or by a specific amount of seconds.",
+		"group": "Reward 8 - Countdown Settings"
+	},
+	"RedeemedSFXPath8": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to SFX at Redemption File",
+		"tooltip": "Specify the path to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Reward 8 - Countdown Settings"
+	},
+	"RedeemedSFXVolume8": {
+		"type": "slider",
+		"label": "Reward 8 - Countdown Settings",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 8,
+		"tooltip": "Specify the volume to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Reward 8 - Countdown Settings"
+	},
+	"RedeemedSFXDelay8": {
+		"type": "numberbox",
+		"label": "SFX at Redemption Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Reward 8 - Countdown Settings"
+	},
+	"FinishedSFXPath8": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to SFX at Finish File",
+		"tooltip": "Specify the path to the SFX effect to trigger at the end of the countdown.",
+		"group": "Reward 8 - Countdown Settings"
+	},
+	"FinishedSFXVolume8": {
+		"type": "slider",
+		"label": "SFX at Finish Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 8,
+		"tooltip": "Specify the volume to the SFX effect to trigger at the end of the countdown.",
+		"group": "Reward 8 - Countdown Settings"
+	},
+
+
+	"TimeoutType8": {
+		"type": "dropdown",
+		"label": "Timeout Type",
+		"value": "Fixed",
+		"tooltip": "Fixed.",
+		"items": [
+			"Fixed",
+			"Reward Redeemer",
+			"Reward Message"
+		],
+		"group": "Reward 8 - Timeout User Settings"
+	},
+	"TimeoutFixedUser8": {
+		"type": "textbox",
+		"value": "",
+		"label": "Fixed Username to Timeout",
+		"tooltip": "If timeout type is set to Fixed this will be the user that is timed out.",
+		"group": "Reward 8 - Timeout User Settings"
+	},
+	"TimeoutDuration8": {
+		"type": "numberbox",
+		"label": "Timeout Duration",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to timeout user.",
+		"group": "Reward 8 - Timeout User Settings"
+	},
+
+
+	"UseRewardCost8": {
+		"type": "checkbox",
+		"value": true,
+		"label": "Use Reward Amount",
+		"tooltip": "If set to true it will assign currency to user equal to reward cost.",
+		"group": "Reward 8 - Currency Exchange Settings"
+	},
+	"CurrencyAmount8": {
+		"type": "numberbox",
+		"label": "Currency Amount",
+		"value": 10,
+		"tooltip": "Set the amount of currency to give to user on redemption.",
+		"group": "Reward 8 - Currency Exchange Settings"
+	},
+
+
+	"AHKPath8": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to AutoHotkey script",
+		"tooltip": "Specify the path to the AutoHotKey script to trigger.",
+		"group": "Reward 8 - AutoHotkey Settings"
+	},
+	"AHKArguments8": {
+		"type": "textbox",
+		"value": "{username}, {message}, {rewardtitle}, {rewardcost}, {timestamp}",
+		"label": "Arguments to Pass to AutoHotkey Script",
+		"tooltip": "Enter a comma separated list of arguments to pass to script. {username}, {message}, {rewardtitle}, {rewardcost}, {timestamp} can be used to get user and reward info to pass into script.",
+		"group": "Reward 8 - AutoHotkey Settings"
+	},
+	"AHKDelay8": {
+		"type": "numberbox",
+		"label": "AutoHotkey Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to process next reward.",
+		"group": "Reward 8 - AutoHotkey Settings"
+	},
+
+
+	"btnRewardHeader9": {
+		"type": "button",
+		"label": "V Reward 9 Settings V",
+		"tooltip": "Jump to Save button.",
+		"wsevent": "",
+		"function": "PageDown",
+		"group": "         "
+	},
+	"RewardName9": {
+		"type": "textbox",
+		"value": "",
+		"label": "Title of Twitch Reward",
+		"tooltip": "Specify the name of the Twitch Reward that will trigger this event when detected.",
+		"group": "         "
+	},
+	"RewardType9": {
+		"type": "dropdown",
+		"label": "Reward Type",
+		"value": "Alert - Gif and/or SFX",
+		"tooltip": "Select the type of reward. Then match the associated number with the below inputs that can be used.",
+		"items": [
+			"Alert - Gif and/or SFX",
+			"Countdown Overlay",
+			"Timeout User",
+			"Convert Channel Points to Currency",
+			"AutoHotkey"
+		],
+		"group": "Reward 9 - Mandatory Settings"
+	},
+	"RewardActivationType9": {
+		"type": "dropdown",
+		"label": "Activation Point",
+		"value": "Immediate",
+		"tooltip": "Set whether the reward should be triggered immediately on reward redemption by viewer, or when the reward is accepted/rejected from the reward queue. Note: twitch currently doesn't return a way to distinguish between Accept or Reject so Reject will still trigger the reward.",
+		"items": [
+			"Immediate",
+			"On Reward Queue Accept/Reject"
+		],
+		"group": "Reward 9 - Mandatory Settings"
+	},
+
+
+	"AlertMediaPath9": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Path to Image/Gif File",
+		"tooltip": "Specify the path to the Image/Gif to trigger.",
+		"group": "Reward 9 - Alert Settings"
+	},
+	"AlertText9": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Text",
+		"tooltip": "Text to be displayed with the alert.",
+		"group": "Reward 9 - Alert Settings"
+	},
+	"AlertSFXPath9": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Path to SFX File",
+		"tooltip": "Specify the path to the SFX effect to trigger.",
+		"group": "Reward 9 - Alert Settings"
+	},
+	"AlertSFXVolume9": {
+		"type": "slider",
+		"label": "Reward 9 - Alert SFX Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 9,
+		"tooltip": "Specify the volume to the SFX effect to trigger.",
+		"group": "Reward 9 - Alert Settings"
+	},
+	"AlertSFXDelay9": {
+		"type": "numberbox",
+		"label": "Alert SFX Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Reward 9 - Alert Settings"
+	},
+
+
+	"CountdownTitle9": {
+		"type": "textbox",
+		"label": "Countdown Title",
+		"value": "Countdown 9",
+		"tooltip": "Title to be displayed on countdown overlay.",
+		"group": "Reward 9 - Countdown Settings"
+	},
+	"CountdownLength9": {
+		"type": "numberbox",
+		"label": "Time in Seconds to Add to Countdown",
+		"value": 600,
+		"tooltip": "Set the amount of time in seconds to add to the timer.",
+		"group": "Reward 9 - Countdown Settings"
+	},
+	"ResetCommand9": {
+		"type": "textbox",
+		"label": "Command Name for Resetting Countdown",
+		"value": "!reset9",
+		"tooltip": "Set the command name that can be used by moderator+ to reset timer to closest countdown multiple or by a specific amount of seconds.",
+		"group": "Reward 9 - Countdown Settings"
+	},
+	"RedeemedSFXPath9": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to SFX at Redemption File",
+		"tooltip": "Specify the path to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Reward 9 - Countdown Settings"
+	},
+	"RedeemedSFXVolume9": {
+		"type": "slider",
+		"label": "Reward 9 - Countdown Settings",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 9,
+		"tooltip": "Specify the volume to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Reward 9 - Countdown Settings"
+	},
+	"RedeemedSFXDelay9": {
+		"type": "numberbox",
+		"label": "SFX at Redemption Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Reward 9 - Countdown Settings"
+	},
+	"FinishedSFXPath9": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to SFX at Finish File",
+		"tooltip": "Specify the path to the SFX effect to trigger at the end of the countdown.",
+		"group": "Reward 9 - Countdown Settings"
+	},
+	"FinishedSFXVolume9": {
+		"type": "slider",
+		"label": "SFX at Finish Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 9,
+		"tooltip": "Specify the volume to the SFX effect to trigger at the end of the countdown.",
+		"group": "Reward 9 - Countdown Settings"
+	},
+
+
+	"TimeoutType9": {
+		"type": "dropdown",
+		"label": "Timeout Type",
+		"value": "Fixed",
+		"tooltip": "Fixed.",
+		"items": [
+			"Fixed",
+			"Reward Redeemer",
+			"Reward Message"
+		],
+		"group": "Reward 9 - Timeout User Settings"
+	},
+	"TimeoutFixedUser9": {
+		"type": "textbox",
+		"value": "",
+		"label": "Fixed Username to Timeout",
+		"tooltip": "If timeout type is set to Fixed this will be the user that is timed out.",
+		"group": "Reward 9 - Timeout User Settings"
+	},
+	"TimeoutDuration9": {
+		"type": "numberbox",
+		"label": "Timeout Duration",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to timeout user.",
+		"group": "Reward 9 - Timeout User Settings"
+	},
+
+
+	"UseRewardCost9": {
+		"type": "checkbox",
+		"value": true,
+		"label": "Use Reward Amount",
+		"tooltip": "If set to true it will assign currency to user equal to reward cost.",
+		"group": "Reward 9 - Currency Exchange Settings"
+	},
+	"CurrencyAmount9": {
+		"type": "numberbox",
+		"label": "Currency Amount",
+		"value": 10,
+		"tooltip": "Set the amount of currency to give to user on redemption.",
+		"group": "Reward 9 - Currency Exchange Settings"
+	},
+
+
+	"AHKPath9": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to AutoHotkey script",
+		"tooltip": "Specify the path to the AutoHotKey script to trigger.",
+		"group": "Reward 9 - AutoHotkey Settings"
+	},
+	"AHKArguments9": {
+		"type": "textbox",
+		"value": "{username}, {message}, {rewardtitle}, {rewardcost}, {timestamp}",
+		"label": "Arguments to Pass to AutoHotkey Script",
+		"tooltip": "Enter a comma separated list of arguments to pass to script. {username}, {message}, {rewardtitle}, {rewardcost}, {timestamp} can be used to get user and reward info to pass into script.",
+		"group": "Reward 9 - AutoHotkey Settings"
+	},
+	"AHKDelay9": {
+		"type": "numberbox",
+		"label": "AutoHotkey Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to process next reward.",
+		"group": "Reward 9 - AutoHotkey Settings"
+	},
+
+
+	"btnRewardHeader10": {
+		"type": "button",
+		"label": "V Reward 10 Settings V",
+		"tooltip": "Jump to Save button.",
+		"wsevent": "",
+		"function": "PageDown",
+		"group": "          "
+	},
+	"RewardName10": {
+		"type": "textbox",
+		"value": "",
+		"label": "Title of Twitch Reward",
+		"tooltip": "Specify the name of the Twitch Reward that will trigger this event when detected.",
+		"group": "          "
+	},
+	"RewardType10": {
+		"type": "dropdown",
+		"label": "Reward Type",
+		"value": "Alert - Gif and/or SFX",
+		"tooltip": "Select the type of reward. Then match the associated number with the below inputs that can be used.",
+		"items": [
+			"Alert - Gif and/or SFX",
+			"Countdown Overlay",
+			"Timeout User",
+			"Convert Channel Points to Currency",
+			"AutoHotkey"
+		],
+		"group": "Reward 10 - Mandatory Settings"
+	},
+	"RewardActivationType10": {
+		"type": "dropdown",
+		"label": "Activation Point",
+		"value": "Immediate",
+		"tooltip": "Set whether the reward should be triggered immediately on reward redemption by viewer, or when the reward is accepted/rejected from the reward queue. Note: twitch currently doesn't return a way to distinguish between Accept or Reject so Reject will still trigger the reward.",
+		"items": [
+			"Immediate",
+			"On Reward Queue Accept/Reject"
+		],
+		"group": "Reward 10 - Mandatory Settings"
+	},
+
+
+	"AlertMediaPath10": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Path to Image/Gif File",
+		"tooltip": "Specify the path to the Image/Gif to trigger.",
+		"group": "Reward 10 - Alert Settings"
+	},
+	"AlertText10": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Text",
+		"tooltip": "Text to be displayed with the alert.",
+		"group": "Reward 10 - Alert Settings"
+	},
+	"AlertSFXPath10": {
+		"type": "textbox",
+		"value": "",
+		"label": "Alert Path to SFX File",
+		"tooltip": "Specify the path to the SFX effect to trigger.",
+		"group": "Reward 10 - Alert Settings"
+	},
+	"AlertSFXVolume10": {
+		"type": "slider",
+		"label": "Reward 10 - Alert SFX Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 10,
+		"tooltip": "Specify the volume to the SFX effect to trigger.",
+		"group": "Reward 10 - Alert Settings"
+	},
+	"AlertSFXDelay10": {
+		"type": "numberbox",
+		"label": "Alert SFX Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Reward 10 - Alert Settings"
+	},
+
+
+	"CountdownTitle10": {
+		"type": "textbox",
+		"label": "Countdown Title",
+		"value": "Countdown 10",
+		"tooltip": "Title to be displayed on countdown overlay.",
+		"group": "Reward 10 - Countdown Settings"
+	},
+	"CountdownLength10": {
+		"type": "numberbox",
+		"label": "Time in Seconds to Add to Countdown",
+		"value": 600,
+		"tooltip": "Set the amount of time in seconds to add to the timer.",
+		"group": "Reward 10 - Countdown Settings"
+	},
+	"ResetCommand10": {
+		"type": "textbox",
+		"label": "Command Name for Resetting Countdown",
+		"value": "!reset10",
+		"tooltip": "Set the command name that can be used by moderator+ to reset timer to closest countdown multiple or by a specific amount of seconds.",
+		"group": "Reward 10 - Countdown Settings"
+	},
+	"RedeemedSFXPath10": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to SFX at Redemption File",
+		"tooltip": "Specify the path to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Reward 10 - Countdown Settings"
+	},
+	"RedeemedSFXVolume10": {
+		"type": "slider",
+		"label": "Reward 10 - Countdown Settings",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 10,
+		"tooltip": "Specify the volume to the SFX effect to trigger immediately at reward redemption.",
+		"group": "Reward 10 - Countdown Settings"
+	},
+	"RedeemedSFXDelay10": {
+		"type": "numberbox",
+		"label": "SFX at Redemption Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to play next SFX in queue after starting to play this SFX.",
+		"group": "Reward 10 - Countdown Settings"
+	},
+	"FinishedSFXPath10": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to SFX at Finish File",
+		"tooltip": "Specify the path to the SFX effect to trigger at the end of the countdown.",
+		"group": "Reward 10 - Countdown Settings"
+	},
+	"FinishedSFXVolume10": {
+		"type": "slider",
+		"label": "SFX at Finish Volume",
+		"value": 100,
+		"min": 0,
+		"max": 100,
+		"ticks": 10,
+		"tooltip": "Specify the volume to the SFX effect to trigger at the end of the countdown.",
+		"group": "Reward 10 - Countdown Settings"
+	},
+
+
+	"TimeoutType10": {
+		"type": "dropdown",
+		"label": "Timeout Type",
+		"value": "Fixed",
+		"tooltip": "Fixed.",
+		"items": [
+			"Fixed",
+			"Reward Redeemer",
+			"Reward Message"
+		],
+		"group": "Reward 10 - Timeout User Settings"
+	},
+	"TimeoutFixedUser10": {
+		"type": "textbox",
+		"value": "",
+		"label": "Fixed Username to Timeout",
+		"tooltip": "If timeout type is set to Fixed this will be the user that is timed out.",
+		"group": "Reward 10 - Timeout User Settings"
+	},
+	"TimeoutDuration10": {
+		"type": "numberbox",
+		"label": "Timeout Duration",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to timeout user.",
+		"group": "Reward 10 - Timeout User Settings"
+	},
+
+
+	"UseRewardCost10": {
+		"type": "checkbox",
+		"value": true,
+		"label": "Use Reward Amount",
+		"tooltip": "If set to true it will assign currency to user equal to reward cost.",
+		"group": "Reward 10 - Currency Exchange Settings"
+	},
+	"CurrencyAmount10": {
+		"type": "numberbox",
+		"label": "Currency Amount",
+		"value": 10,
+		"tooltip": "Set the amount of currency to give to user on redemption.",
+		"group": "Reward 10 - Currency Exchange Settings"
+	},
+
+
+	"AHKPath10": {
+		"type": "textbox",
+		"value": "",
+		"label": "Path to AutoHotkey script",
+		"tooltip": "Specify the path to the AutoHotKey script to trigger.",
+		"group": "Reward 10 - AutoHotkey Settings"
+	},
+	"AHKArguments10": {
+		"type": "textbox",
+		"value": "{username}, {message}, {rewardtitle}, {rewardcost}, {timestamp}",
+		"label": "Arguments to Pass to AutoHotkey Script",
+		"tooltip": "Enter a comma separated list of arguments to pass to script. {username}, {message}, {rewardtitle}, {rewardcost}, {timestamp} can be used to get user and reward info to pass into script.",
+		"group": "Reward 10 - AutoHotkey Settings"
+	},
+	"AHKDelay10": {
+		"type": "numberbox",
+		"label": "AutoHotkey Delay in Seconds",
+		"value": 10,
+		"tooltip": "Specify the number of seconds to wait before attempting to process next reward.",
+		"group": "Reward 10 - AutoHotkey Settings"
+	},
+
+
+	"btnBackToTop": {
+		"type": "button",
+		"label": "^ Back to Top ^",
+		"tooltip": "Jump to top of settings.",
+		"wsevent": "",
+		"function": "PageUp",
+		"group": "	"
 	}
 }

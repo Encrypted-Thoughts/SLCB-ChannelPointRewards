@@ -1,0 +1,1 @@
+var RewardNumber = 1;

@@ -7,8 +7,10 @@ import clr, codecs, json, os, re, sys, threading, datetime, random
 random = random.WichmannHill()
 
 clr.AddReference("IronPython.Modules.dll")
+clr.AddReference("System.Windows.Forms")
 clr.AddReferenceToFileAndPath(os.path.join(os.path.dirname(os.path.realpath(__file__)) + "\References", r"TwitchLib.PubSub.dll"))
 from TwitchLib.PubSub import TwitchPubSub
+from System.Windows.Forms import SendKeys
 
 #---------------------------
 #   [Required] Script Information
@@ -35,6 +37,8 @@ RefreshToken = None
 AccessToken = None
 UserID = None
 
+RewardCount = 10
+
 InvalidRefreshToken = False
 
 #---------------------------------------
@@ -53,7 +57,7 @@ class Settings(object):
             self.TwitchRedirectUrl = ""
             self.TwitchAuthCode = ""
 
-            for i in range(1, 2):
+            for i in range(1, RewardCount + 1):
                 setattr(self, "RewardName" + str(i), "")
                 setattr(self, "RewardType" + str(i), "Immediate")
                 setattr(self, "RewardActivationType" + str(i), "Immediate")
@@ -126,7 +130,7 @@ def Init():
 def Execute(data):
 
     if data.IsChatMessage() and Parent.HasPermission(data.User,"Moderator",""):
-        for i in range(1, 2):
+        for i in range(1, RewardCount + 1):
             resetCommand = getattr(ScriptSettings, "ResetCommand" + str(i))
             rewardType = getattr(ScriptSettings, "RewardType" + str(i))
             if "Countdown Overlay" in rewardType and resetCommand.lower() in data.Message.lower():
@@ -282,7 +286,7 @@ def EventReceiverRewardRedeemed(sender, e):
     if ScriptSettings.EnableDebug:
         Parent.Log(ScriptName, "Event triggered: " + str(e.TimeStamp) + " ChannelId: " + str(e.ChannelId) + " Login: " + str(e.Login) + " DisplayName: " + str(e.DisplayName) + " Message: " + str(e.Message) + " RewardId: " + str(e.RewardId) + " RewardTitle: " + str(e.RewardTitle) + " RewardPrompt: " + str(e.RewardPrompt) + " RewardCost: " + str(e.RewardCost) + " Status: " + str(e.Status))
 
-    for i in range(1, 2):
+    for i in range(1, RewardCount + 1):
         Parent.Log(ScriptName, str(i))
         if e.RewardTitle == getattr(ScriptSettings, "RewardName" + str(i)):
             rewardType = getattr(ScriptSettings, "RewardType" + str(i))
@@ -532,6 +536,20 @@ def SaveTokens():
 #---------------------------
 def OpenReadme():
     os.startfile(ReadMe)
+
+#---------------------------
+#   PageDown (Pages down to the bottom of settings.)
+#---------------------------
+def PageDown():
+    for i in range(1, RewardCount + 3):
+        SendKeys.SendWait("{PGDN}")
+
+#---------------------------
+#   PageDown (Pages down to the bottom of settings.)
+#---------------------------
+def PageUp():
+    for i in range(1, RewardCount + 3):
+        SendKeys.SendWait("{PGUP}")
 
 #---------------------------
 #   GetToken (Attached to settings button to open a page in browser to get an authorization code.)

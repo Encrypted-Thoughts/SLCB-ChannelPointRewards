@@ -1,0 +1,36 @@
+html, body {
+    margin: 0px;
+    height: 100%;
+    background: none;
+}
+
+#container {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 2px 2px 4px black;
+    background: #333;
+    border-radius: 25px;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+#header {
+    text-align: center;
+    font-weight: bold;
+}
+
+#time {
+    text-align: center;
+    font-weight: bold;
+}
+
+#innerFucks {
+    color: white;
+}
+
+#outerFucks {
+    color: darkred;
+    text-decoration: line-through;
+}
