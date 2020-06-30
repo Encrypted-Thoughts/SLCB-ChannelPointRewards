@@ -38,6 +38,14 @@ Congrats now the script should be able to run and maintain authentication by its
 
 If for some reason it ever loses authenication you can manually renew the auth code by clicking the "Delete Saved Tokens" then clicking the "Get Token" button and redoing the above steps.
 
+You will also need to give the script access to broadcast streamlabs events. This can be achieved by right clicking on the script in Streamlabs Chatbot and selecting "Insert API Key". https://github.com/StreamlabsSupport/Streamlabs-Chatbot/wiki/Script-overlays
+
+![api key](https://user-images.githubusercontent.com/50642352/83985340-7701fd00-a8fe-11ea-9aca-393d6dc7d4b4.png)
+
+After that you should be able to add a new Browser source in OBS and point it to "index.html" located in the "overlay" folder in the script folder. If you're unsure how to locate the streamlabs custom scripts folder you can select "Open Script Folder" shown in the above step.
+
+![index](https://user-images.githubusercontent.com/50642352/83985548-48d0ed00-a8ff-11ea-94f8-0e56c4f42d64.png)
+
 ## Use
 
 Once installed you just need to add custom channel point rewards to your twitch channel and then match the names of the reward to a Twitch Reward event in the script settings.
