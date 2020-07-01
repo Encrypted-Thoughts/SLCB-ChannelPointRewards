@@ -3,7 +3,7 @@
 #---------------------------
 #   Import Libraries
 #---------------------------
-import clr, codecs, json, os, re, sys, threading, datetime, random
+import clr, codecs, json, os, re, sys, threading, datetime, math, random
 random = random.WichmannHill()
 
 clr.AddReference("IronPython.Modules.dll")
@@ -25,6 +25,7 @@ Version = "2.0.0.0"
 #   Define Global Variables
 #---------------------------
 SettingsFile = os.path.join(os.path.dirname(__file__), "settings.json")
+BlacklistFile = os.path.join(os.path.dirname(__file__), "blacklist.json")
 RefreshTokenFile = os.path.join(os.path.dirname(__file__), "tokens.json")
 ReadMe = os.path.join(os.path.dirname(__file__), "README.md")
 EventReceiver = None
@@ -40,6 +41,8 @@ UserID = None
 RewardCount = 10
 
 InvalidRefreshToken = False
+
+Blacklist = []
 
 #---------------------------------------
 # Classes
@@ -70,7 +73,7 @@ class Settings(object):
 
                 setattr(self, "CountdownTitle" + str(i), "")
                 setattr(self, "CountdownLength" + str(i), 60)
-                setattr(self, "ResetCommand" + str(i), "!reset1")
+                setattr(self, "ResetCommand" + str(i), "!reset" + str(i))
                 setattr(self, "RedeemedSFXPath" + str(i), "")
                 setattr(self, "RedeemedSFXVolume" + str(i), 100)
                 setattr(self, "RedeemedSFXDelay" + str(i), 10)
@@ -87,6 +90,13 @@ class Settings(object):
                 setattr(self, "AHKPath" + str(i), "")
                 setattr(self, "AHKArguments" + str(i), None)
                 setattr(self, "AHKDelay" + str(i), 10)
+
+                setattr(self, "BlacklistDuration" + str(i), 3600)
+                setattr(self, "FixedWord" + str(i), "")
+                setattr(self, "RedeemMessage" + str(i), "{username} has decreed that {word} shall not be used for {hours} hours!")
+                setattr(self, "ExpirationMessage" + str(i), "{word} is now unlocked!")
+                setattr(self, "TriggerMessage" + str(i), "{username} Said: {msg}")
+                setattr(self, "CensorPhrase" + str(i), "[REDACTED]")
 
     def Reload(self, jsondata):
         self.__dict__ = json.loads(jsondata, encoding="utf-8")
@@ -110,6 +120,16 @@ def Init():
     ScriptSettings = Settings(SettingsFile)
     ScriptSettings.Save(SettingsFile)
 
+    global Blacklist
+    if os.path.isfile(BlacklistFile):
+        with open(BlacklistFile) as f:
+            content = f.readlines()
+        for item in content:
+            data = item.split(",")
+            word = data[0]
+            time = datetime.datetime.strptime(data[1], "%Y-%m-%d %H:%M:%S.%f")
+            Blacklist.append((word, time))
+
     global RefreshToken
     global AccessToken
     global TokenExpiration
@@ -129,28 +149,88 @@ def Init():
 #---------------------------
 def Execute(data):
 
-    if data.IsChatMessage() and Parent.HasPermission(data.User,"Moderator",""):
-        for i in range(1, RewardCount + 1):
-            resetCommand = getattr(ScriptSettings, "ResetCommand" + str(i))
-            rewardType = getattr(ScriptSettings, "RewardType" + str(i))
-            if "Countdown Overlay" in rewardType and resetCommand.lower() in data.Message.lower():
+    for i in range(1, RewardCount + 1):
+        rewardType = getattr(ScriptSettings, "RewardType" + str(i))
+
+        if "Ban Word" in rewardType:
+            global Blacklist
+            updatedList = []
+            changed = False
+            for item in Blacklist:
+                if item[1] < datetime.datetime.now():
+                    expireMsg = getattr(ScriptSettings, "ExpirationMessage" + str(i)).replace("{word}", item[0])
+                    if expireMsg and expireMsg.strip() != "":
+                        Parent.SendStreamMessage(expireMsg)
+                    changed = True
+                else:
+                    updatedList.append(item)
+
+            if changed:
                 if ScriptSettings.EnableDebug:
-                    Parent.Log(ScriptName, "Resetting countdown")
-                length = getattr(ScriptSettings, "CountdownLength" + str(i))
-                type = "reset"
-                if data.GetParamCount() > 1:
-                    length = int(data.GetParam(1))
-                    type = "add"
-                payload = {
-                    "title": getattr(ScriptSettings, "CountdownTitle" + str(i)),
-                    "interval": length,
-                    "type": type,
-                    "redeemedSFXPath": getattr(ScriptSettings, "RedeemedSFXPath" + str(i)),
-                    "redeemedSFXVolume": getattr(ScriptSettings, "RedeemedSFXVolume" + str(i))/100.0,
-                    "finishedSFXPath": getattr(ScriptSettings, "FinishedSFXPath" + str(i)),
-                    "finishedSFXVolume": getattr(ScriptSettings, "FinishedSFXVolume" + str(i))/100.0
+                    Parent.Log(ScriptName, "Blacklist changed.")
+                Blacklist = updatedList
+                SaveBlacklist()
+
+
+        if data.IsChatMessage() and data.IsFromTwitch():
+            if Parent.HasPermission(data.User,"Moderator","") and "Countdown Overlay" in rewardType:
+                resetCommand = getattr(ScriptSettings, "ResetCommand" + str(i))
+                if resetCommand.lower() in data.Message.lower():
+                    if ScriptSettings.EnableDebug:
+                        Parent.Log(ScriptName, "Resetting countdown")
+                    length = getattr(ScriptSettings, "CountdownLength" + str(i))
+                    type = "reset"
+                    if data.GetParamCount() > 1:
+                        length = int(data.GetParam(1))
+                        type = "add"
+                    payload = {
+                        "title": getattr(ScriptSettings, "CountdownTitle" + str(i)),
+                        "interval": length,
+                        "type": type,
+                        "redeemedSFXPath": getattr(ScriptSettings, "RedeemedSFXPath" + str(i)),
+                        "redeemedSFXVolume": getattr(ScriptSettings, "RedeemedSFXVolume" + str(i))/100.0,
+                        "finishedSFXPath": getattr(ScriptSettings, "FinishedSFXPath" + str(i)),
+                        "finishedSFXVolume": getattr(ScriptSettings, "FinishedSFXVolume" + str(i))/100.0
                 }
                 Parent.BroadcastWsEvent("EVENT_RESET_" + str(i),json.dumps(payload, encoding='utf-8-sig'))
+
+            if "Ban Word" in rewardType:
+                searchRegex = "\\b("
+                for item in Blacklist:
+                        searchRegex += re.escape(item[0]) + "|"
+                if searchRegex == "\\b(":
+                    return
+                searchRegex = searchRegex[:-1] + ")\\b"
+
+                message = data.Message
+                if ScriptSettings.EnableDebug:
+                    Parent.Log(ScriptName, "Regex search string: " + searchRegex)
+                    Parent.Log(ScriptName, data.RawData)
+                matches = re.findall(searchRegex, message, re.IGNORECASE)
+
+                if len(matches) == 0:
+                    if ScriptSettings.EnableDebug:
+                        Parent.Log(ScriptName, "No match found in message.")
+                    return 
+
+                id = re.search(";id=([^,;]+);", data.RawData)
+
+                if id is None:
+                    if ScriptSettings.EnableDebug:
+                        Parent.Log(ScriptName, "No id found in message.")
+                    return
+
+                for item in matches:
+                    message = message.replace(item, getattr(ScriptSettings, "CensorPhrase" + str(i)))
+
+                if ScriptSettings.EnableDebug:
+                    Parent.Log(ScriptName, "Ids Found: " + id.group(1) + "Match Count: " + str(len(matches)))
+
+                Parent.SendStreamMessage("/delete " + id.group(1))
+
+                triggerMsg = getattr(ScriptSettings, "TriggerMessage" + str(i)).replace("{username}", data.UserName).replace("{msg}", message)
+                if triggerMsg and triggerMsg.strip() != "":
+                    Parent.SendStreamMessage(getattr(ScriptSettings, "TriggerMessage" + str(i)).replace("{username}", data.UserName).replace("{msg}", message))
 
     return
 
@@ -212,6 +292,7 @@ def ReloadSettings(jsonData):
 #   [Optional] Unload (Called when a user reloads their scripts or closes the bot / cleanup stuff)
 #---------------------------
 def Unload():
+    SaveBlacklist()
     StopEventReceiver()
     return
 
@@ -223,6 +304,7 @@ def ScriptToggled(state):
         if EventReceiver is None:
             threading.Thread(target=RestartEventReceiver).start()
     else:
+        SaveBlacklist()
         StopEventReceiver()
 
     return
@@ -287,7 +369,7 @@ def EventReceiverRewardRedeemed(sender, e):
         Parent.Log(ScriptName, "Event triggered: " + str(e.TimeStamp) + " ChannelId: " + str(e.ChannelId) + " Login: " + str(e.Login) + " DisplayName: " + str(e.DisplayName) + " Message: " + str(e.Message) + " RewardId: " + str(e.RewardId) + " RewardTitle: " + str(e.RewardTitle) + " RewardPrompt: " + str(e.RewardPrompt) + " RewardCost: " + str(e.RewardCost) + " Status: " + str(e.Status))
 
     for i in range(1, RewardCount + 1):
-        Parent.Log(ScriptName, str(i))
+        #Parent.Log(ScriptName, str(i))
         if e.RewardTitle == getattr(ScriptSettings, "RewardName" + str(i)):
             rewardType = getattr(ScriptSettings, "RewardType" + str(i))
             activationType = getattr(ScriptSettings, "RewardActivationType" + str(i))
@@ -345,6 +427,14 @@ def EventReceiverRewardRedeemed(sender, e):
                         getattr(ScriptSettings, "AHKDelay" + str(i)), 
                         getattr(ScriptSettings, "AHKPath" + str(i)), 
                         params,
+                        )))
+                elif "Ban Word" in rewardType:
+                    ThreadQueue.append(threading.Thread(target=BanWordRewardWorker,args=(
+                        e.DisplayName, 
+                        e.Message, 
+                        getattr(ScriptSettings, "BlacklistDuration" + str(i)),
+                        getattr(ScriptSettings, "FixedWord" + str(i)),
+                        getattr(ScriptSettings, "RedeemMessage" + str(i)),
                         )))
     return
 
@@ -439,6 +529,31 @@ def AutoHotkeyRewardWorker(delay, script, args):
     global PlayNextAt
     PlayNextAt = datetime.datetime.now() + datetime.timedelta(0, delay)
 
+#---------------------------
+#   BanWordRewardWorker (Worker function for Ban Word Rewards to be spun off into its own thread to complete without blocking the rest of script execution.)
+#---------------------------
+def BanWordRewardWorker(username, userMessage, duration, fixedWord, redeemMessage):
+    global Blacklist
+
+    word = userMessage
+    if fixedWord and fixedWord.strip() != "":
+        word = fixedWord
+
+    item = (word.strip(), datetime.datetime.now() + datetime.timedelta(0, duration))
+    if ScriptSettings.EnableDebug:
+        Parent.Log(ScriptName, str(item))
+    Blacklist.append(item)
+    SaveBlacklist()
+
+    message = redeemMessage.replace("{username}", username)
+    message = message.replace("{word}", word)
+    message = message.replace("{seconds}", str(duration))
+    message = message.replace("{minutes}", str(math.trunc(duration/60.0)))
+    message = message.replace("{hours}", str(math.trunc(duration/3600.0)))
+    message = message.replace("{days}", str(math.trunc(duration/86400.0)))
+
+    if message and message.strip() != "":
+        Parent.SendStreamMessage(message)
 
 #---------------------------
 #   RefreshTokens (Called when a new access token needs to be retrieved.)
@@ -517,6 +632,14 @@ def GetUserID():
     user = json.loads(result["response"])
     global UserID
     UserID = user["data"][0]["id"]
+
+#---------------------------
+#   SaveBlacklist (Saves list of blacklisted words to file for use on script restart and reload)
+#---------------------------
+def SaveBlacklist():
+    with open(BlacklistFile, 'w') as f:
+        for item in Blacklist:
+            f.write(str(item[0]) + "," + str(item[1]) + "\n")
 
 #---------------------------
 #   SaveTokens (Saves tokens and expiration time to a json file in script bin for use on script restart and reload.)

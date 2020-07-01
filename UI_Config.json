@@ -78,7 +78,9 @@
 		"group": "Twitch Auth - KEEP HIDDEN"
 	},
 
-
+	/****************************************************************
+/  REWARD 1
+/***************************************************************/
 	"btnRewardHeader1": {
 		"type": "button",
 		"label": "V Reward 1 Settings V",
@@ -104,7 +106,8 @@
 			"Countdown Overlay",
 			"Timeout User",
 			"Convert Channel Points to Currency",
-			"AutoHotkey"
+			"AutoHotkey",
+			"Ban Word"
 		],
 		"group": "Reward 1 - Mandatory Settings"
 	},
@@ -292,6 +295,52 @@
 	},
 
 
+	"BlacklistDuration1": {
+		"type": "numberbox",
+		"label": "Ban Duration in Seconds",
+		"value": 3600,
+		"tooltip": "Specify the number in seconds for how long a word should be banned. 1 Minute = 60, 1 Hour = 3600, 1 Day = 86400",
+		"group": "Reward 1 - Ban Word Settings"
+	},
+	"FixedWord1": {
+		"type": "textbox",
+		"value": "",
+		"label": "Specific Word",
+		"tooltip": "Set a specific word to ban when triggered. If blank user entered text will be used.",
+		"group": "Reward 1 - Ban Word Settings"
+	},
+	"RedeemMessage1": {
+		"type": "textbox",
+		"value": "{username} has decreed that {word} shall not be used for {hours} hours!",
+		"label": "Redemption Message",
+		"tooltip": "Redemption message that will be posted notifying chat of redemption effect. options: {username} {word} {seconds} {minutes} {hours} {days}",
+		"group": "Reward 1 - Ban Word Settings"
+	},
+	"ExpirationMessage1": {
+		"type": "textbox",
+		"value": "{word} is now unlocked!",
+		"label": "Expiration Message",
+		"tooltip": "Expiration message that will be posted notifying chat of duration of reward effect ending. options: {word}",
+		"group": "Reward 1 - Ban Word Settings"
+	},
+	"TriggerMessage1": {
+		"type": "textbox",
+		"value": "{username} Said: {msg}",
+		"label": "Trigger Message",
+		"tooltip": "Trigger message that will be posted to chat after someone triggers the ban. options: {username} {msg}",
+		"group": "Reward 1 - Ban Word Settings"
+	},
+	"CensorPhrase1": {
+		"type": "textbox",
+		"value": "[REDACTED]",
+		"label": "Censor Phrase",
+		"tooltip": "Message to replace banned words in someone's message.",
+		"group": "Reward 1 - Ban Word Settings"
+	},
+
+	/****************************************************************
+/  REWARD 2
+/***************************************************************/
 	"btnRewardHeader2": {
 		"type": "button",
 		"label": "V Reward 2 Settings V",
@@ -317,7 +366,8 @@
 			"Countdown Overlay",
 			"Timeout User",
 			"Convert Channel Points to Currency",
-			"AutoHotkey"
+			"AutoHotkey",
+			"Ban Word"
 		],
 		"group": "Reward 2 - Mandatory Settings"
 	},
@@ -505,6 +555,52 @@
 	},
 
 
+	"BlacklistDuration2": {
+		"type": "numberbox",
+		"label": "Ban Duration in Seconds",
+		"value": 3600,
+		"tooltip": "Specify the number in seconds for how long a word should be banned. 1 Minute = 60, 1 Hour = 3600, 1 Day = 86400",
+		"group": "Reward 2 - Ban Word Settings"
+	},
+	"FixedWord2": {
+		"type": "textbox",
+		"value": "",
+		"label": "Specific Word",
+		"tooltip": "Set a specific word to ban when triggered. If blank user entered text will be used.",
+		"group": "Reward 2 - Ban Word Settings"
+	},
+	"RedeemMessage2": {
+		"type": "textbox",
+		"value": "{username} has decreed that {word} shall not be used for {hours} hours!",
+		"label": "Redemption Message",
+		"tooltip": "Redemption message that will be posted notifying chat of redemption effect. options: {username} {word} {seconds} {minutes} {hours} {days}",
+		"group": "Reward 2 - Ban Word Settings"
+	},
+	"ExpirationMessage2": {
+		"type": "textbox",
+		"value": "{word} is now unlocked!",
+		"label": "Expiration Message",
+		"tooltip": "Expiration message that will be posted notifying chat of duration of reward effect ending. options: {word}",
+		"group": "Reward 2 - Ban Word Settings"
+	},
+	"TriggerMessage2": {
+		"type": "textbox",
+		"value": "{username} Said: {msg}",
+		"label": "Trigger Message",
+		"tooltip": "Trigger message that will be posted to chat after someone triggers the ban. options: {username} {msg}",
+		"group": "Reward 2 - Ban Word Settings"
+	},
+	"CensorPhrase2": {
+		"type": "textbox",
+		"value": "[REDACTED]",
+		"label": "Censor Phrase",
+		"tooltip": "Message to replace banned words in someone's message.",
+		"group": "Reward 2 - Ban Word Settings"
+	},
+
+	/****************************************************************
+/  REWARD 3
+/***************************************************************/
 	"btnRewardHeader3": {
 		"type": "button",
 		"label": "V Reward 3 Settings V",
@@ -530,7 +626,8 @@
 			"Countdown Overlay",
 			"Timeout User",
 			"Convert Channel Points to Currency",
-			"AutoHotkey"
+			"AutoHotkey",
+			"Ban Word"
 		],
 		"group": "Reward 3 - Mandatory Settings"
 	},
@@ -718,6 +815,52 @@
 	},
 
 
+	"BlacklistDuration3": {
+		"type": "numberbox",
+		"label": "Ban Duration in Seconds",
+		"value": 3600,
+		"tooltip": "Specify the number in seconds for how long a word should be banned. 1 Minute = 60, 1 Hour = 3600, 1 Day = 86400",
+		"group": "Reward 3 - Ban Word Settings"
+	},
+	"FixedWord3": {
+		"type": "textbox",
+		"value": "",
+		"label": "Specific Word",
+		"tooltip": "Set a specific word to ban when triggered. If blank user entered text will be used.",
+		"group": "Reward 3 - Ban Word Settings"
+	},
+	"RedeemMessage3": {
+		"type": "textbox",
+		"value": "{username} has decreed that {word} shall not be used for {hours} hours!",
+		"label": "Redemption Message",
+		"tooltip": "Redemption message that will be posted notifying chat of redemption effect. options: {username} {word} {seconds} {minutes} {hours} {days}",
+		"group": "Reward 3 - Ban Word Settings"
+	},
+	"ExpirationMessage3": {
+		"type": "textbox",
+		"value": "{word} is now unlocked!",
+		"label": "Expiration Message",
+		"tooltip": "Expiration message that will be posted notifying chat of duration of reward effect ending. options: {word}",
+		"group": "Reward 3 - Ban Word Settings"
+	},
+	"TriggerMessage3": {
+		"type": "textbox",
+		"value": "{username} Said: {msg}",
+		"label": "Trigger Message",
+		"tooltip": "Trigger message that will be posted to chat after someone triggers the ban. options: {username} {msg}",
+		"group": "Reward 3 - Ban Word Settings"
+	},
+	"CensorPhrase3": {
+		"type": "textbox",
+		"value": "[REDACTED]",
+		"label": "Censor Phrase",
+		"tooltip": "Message to replace banned words in someone's message.",
+		"group": "Reward 3 - Ban Word Settings"
+	},
+
+	/****************************************************************
+/  REWARD 4
+/***************************************************************/
 	"btnRewardHeader4": {
 		"type": "button",
 		"label": "V Reward 4 Settings V",
@@ -743,7 +886,8 @@
 			"Countdown Overlay",
 			"Timeout User",
 			"Convert Channel Points to Currency",
-			"AutoHotkey"
+			"AutoHotkey",
+			"Ban Word"
 		],
 		"group": "Reward 4 - Mandatory Settings"
 	},
@@ -931,6 +1075,52 @@
 	},
 
 
+	"BlacklistDuration4": {
+		"type": "numberbox",
+		"label": "Ban Duration in Seconds",
+		"value": 3600,
+		"tooltip": "Specify the number in seconds for how long a word should be banned. 1 Minute = 60, 1 Hour = 3600, 1 Day = 86400",
+		"group": "Reward 4 - Ban Word Settings"
+	},
+	"FixedWord4": {
+		"type": "textbox",
+		"value": "",
+		"label": "Specific Word",
+		"tooltip": "Set a specific word to ban when triggered. If blank user entered text will be used.",
+		"group": "Reward 4 - Ban Word Settings"
+	},
+	"RedeemMessage4": {
+		"type": "textbox",
+		"value": "{username} has decreed that {word} shall not be used for {hours} hours!",
+		"label": "Redemption Message",
+		"tooltip": "Redemption message that will be posted notifying chat of redemption effect. options: {username} {word} {seconds} {minutes} {hours} {days}",
+		"group": "Reward 4 - Ban Word Settings"
+	},
+	"ExpirationMessage4": {
+		"type": "textbox",
+		"value": "{word} is now unlocked!",
+		"label": "Expiration Message",
+		"tooltip": "Expiration message that will be posted notifying chat of duration of reward effect ending. options: {word}",
+		"group": "Reward 4 - Ban Word Settings"
+	},
+	"TriggerMessage4": {
+		"type": "textbox",
+		"value": "{username} Said: {msg}",
+		"label": "Trigger Message",
+		"tooltip": "Trigger message that will be posted to chat after someone triggers the ban. options: {username} {msg}",
+		"group": "Reward 4 - Ban Word Settings"
+	},
+	"CensorPhrase4": {
+		"type": "textbox",
+		"value": "[REDACTED]",
+		"label": "Censor Phrase",
+		"tooltip": "Message to replace banned words in someone's message.",
+		"group": "Reward 4 - Ban Word Settings"
+	},
+
+	/****************************************************************
+/  REWARD 5
+/***************************************************************/
 	"btnRewardHeader5": {
 		"type": "button",
 		"label": "V Reward 5 Settings V",
@@ -956,7 +1146,8 @@
 			"Countdown Overlay",
 			"Timeout User",
 			"Convert Channel Points to Currency",
-			"AutoHotkey"
+			"AutoHotkey",
+			"Ban Word"
 		],
 		"group": "Reward 5 - Mandatory Settings"
 	},
@@ -1144,6 +1335,52 @@
 	},
 
 
+	"BlacklistDuration5": {
+		"type": "numberbox",
+		"label": "Ban Duration in Seconds",
+		"value": 3600,
+		"tooltip": "Specify the number in seconds for how long a word should be banned. 1 Minute = 60, 1 Hour = 3600, 1 Day = 86400",
+		"group": "Reward 5 - Ban Word Settings"
+	},
+	"FixedWord5": {
+		"type": "textbox",
+		"value": "",
+		"label": "Specific Word",
+		"tooltip": "Set a specific word to ban when triggered. If blank user entered text will be used.",
+		"group": "Reward 5 - Ban Word Settings"
+	},
+	"RedeemMessage5": {
+		"type": "textbox",
+		"value": "{username} has decreed that {word} shall not be used for {hours} hours!",
+		"label": "Redemption Message",
+		"tooltip": "Redemption message that will be posted notifying chat of redemption effect. options: {username} {word} {seconds} {minutes} {hours} {days}",
+		"group": "Reward 5 - Ban Word Settings"
+	},
+	"ExpirationMessage5": {
+		"type": "textbox",
+		"value": "{word} is now unlocked!",
+		"label": "Expiration Message",
+		"tooltip": "Expiration message that will be posted notifying chat of duration of reward effect ending. options: {word}",
+		"group": "Reward 5 - Ban Word Settings"
+	},
+	"TriggerMessage5": {
+		"type": "textbox",
+		"value": "{username} Said: {msg}",
+		"label": "Trigger Message",
+		"tooltip": "Trigger message that will be posted to chat after someone triggers the ban. options: {username} {msg}",
+		"group": "Reward 5 - Ban Word Settings"
+	},
+	"CensorPhrase5": {
+		"type": "textbox",
+		"value": "[REDACTED]",
+		"label": "Censor Phrase",
+		"tooltip": "Message to replace banned words in someone's message.",
+		"group": "Reward 5 - Ban Word Settings"
+	},
+
+	/****************************************************************
+/  REWARD 6
+/***************************************************************/
 	"btnRewardHeader6": {
 		"type": "button",
 		"label": "V Reward 6 Settings V",
@@ -1169,7 +1406,8 @@
 			"Countdown Overlay",
 			"Timeout User",
 			"Convert Channel Points to Currency",
-			"AutoHotkey"
+			"AutoHotkey",
+			"Ban Word"
 		],
 		"group": "Reward 6 - Mandatory Settings"
 	},
@@ -1357,6 +1595,52 @@
 	},
 
 
+	"BlacklistDuration6": {
+		"type": "numberbox",
+		"label": "Ban Duration in Seconds",
+		"value": 3600,
+		"tooltip": "Specify the number in seconds for how long a word should be banned. 1 Minute = 60, 1 Hour = 3600, 1 Day = 86400",
+		"group": "Reward 6 - Ban Word Settings"
+	},
+	"FixedWord6": {
+		"type": "textbox",
+		"value": "",
+		"label": "Specific Word",
+		"tooltip": "Set a specific word to ban when triggered. If blank user entered text will be used.",
+		"group": "Reward 6 - Ban Word Settings"
+	},
+	"RedeemMessage6": {
+		"type": "textbox",
+		"value": "{username} has decreed that {word} shall not be used for {hours} hours!",
+		"label": "Redemption Message",
+		"tooltip": "Redemption message that will be posted notifying chat of redemption effect. options: {username} {word} {seconds} {minutes} {hours} {days}",
+		"group": "Reward 6 - Ban Word Settings"
+	},
+	"ExpirationMessage6": {
+		"type": "textbox",
+		"value": "{word} is now unlocked!",
+		"label": "Expiration Message",
+		"tooltip": "Expiration message that will be posted notifying chat of duration of reward effect ending. options: {word}",
+		"group": "Reward 6 - Ban Word Settings"
+	},
+	"TriggerMessage6": {
+		"type": "textbox",
+		"value": "{username} Said: {msg}",
+		"label": "Trigger Message",
+		"tooltip": "Trigger message that will be posted to chat after someone triggers the ban. options: {username} {msg}",
+		"group": "Reward 6 - Ban Word Settings"
+	},
+	"CensorPhrase6": {
+		"type": "textbox",
+		"value": "[REDACTED]",
+		"label": "Censor Phrase",
+		"tooltip": "Message to replace banned words in someone's message.",
+		"group": "Reward 6 - Ban Word Settings"
+	},
+
+	/****************************************************************
+/  REWARD 7
+/***************************************************************/
 	"btnRewardHeader7": {
 		"type": "button",
 		"label": "V Reward 7 Settings V",
@@ -1382,7 +1666,8 @@
 			"Countdown Overlay",
 			"Timeout User",
 			"Convert Channel Points to Currency",
-			"AutoHotkey"
+			"AutoHotkey",
+			"Ban Word"
 		],
 		"group": "Reward 7 - Mandatory Settings"
 	},
@@ -1570,6 +1855,52 @@
 	},
 
 
+	"BlacklistDuration7": {
+		"type": "numberbox",
+		"label": "Ban Duration in Seconds",
+		"value": 3600,
+		"tooltip": "Specify the number in seconds for how long a word should be banned. 1 Minute = 60, 1 Hour = 3600, 1 Day = 86400",
+		"group": "Reward 7 - Ban Word Settings"
+	},
+	"FixedWord7": {
+		"type": "textbox",
+		"value": "",
+		"label": "Specific Word",
+		"tooltip": "Set a specific word to ban when triggered. If blank user entered text will be used.",
+		"group": "Reward 7 - Ban Word Settings"
+	},
+	"RedeemMessage7": {
+		"type": "textbox",
+		"value": "{username} has decreed that {word} shall not be used for {hours} hours!",
+		"label": "Redemption Message",
+		"tooltip": "Redemption message that will be posted notifying chat of redemption effect. options: {username} {word} {seconds} {minutes} {hours} {days}",
+		"group": "Reward 7 - Ban Word Settings"
+	},
+	"ExpirationMessage7": {
+		"type": "textbox",
+		"value": "{word} is now unlocked!",
+		"label": "Expiration Message",
+		"tooltip": "Expiration message that will be posted notifying chat of duration of reward effect ending. options: {word}",
+		"group": "Reward 7 - Ban Word Settings"
+	},
+	"TriggerMessage7": {
+		"type": "textbox",
+		"value": "{username} Said: {msg}",
+		"label": "Trigger Message",
+		"tooltip": "Trigger message that will be posted to chat after someone triggers the ban. options: {username} {msg}",
+		"group": "Reward 7 - Ban Word Settings"
+	},
+	"CensorPhrase7": {
+		"type": "textbox",
+		"value": "[REDACTED]",
+		"label": "Censor Phrase",
+		"tooltip": "Message to replace banned words in someone's message.",
+		"group": "Reward 7 - Ban Word Settings"
+	},
+
+	/****************************************************************
+/  REWARD 8
+/***************************************************************/
 	"btnRewardHeader8": {
 		"type": "button",
 		"label": "V Reward 8 Settings V",
@@ -1595,7 +1926,8 @@
 			"Countdown Overlay",
 			"Timeout User",
 			"Convert Channel Points to Currency",
-			"AutoHotkey"
+			"AutoHotkey",
+			"Ban Word"
 		],
 		"group": "Reward 8 - Mandatory Settings"
 	},
@@ -1783,6 +2115,52 @@
 	},
 
 
+	"BlacklistDuration8": {
+		"type": "numberbox",
+		"label": "Ban Duration in Seconds",
+		"value": 3600,
+		"tooltip": "Specify the number in seconds for how long a word should be banned. 1 Minute = 60, 1 Hour = 3600, 1 Day = 86400",
+		"group": "Reward 8 - Ban Word Settings"
+	},
+	"FixedWord8": {
+		"type": "textbox",
+		"value": "",
+		"label": "Specific Word",
+		"tooltip": "Set a specific word to ban when triggered. If blank user entered text will be used.",
+		"group": "Reward 8 - Ban Word Settings"
+	},
+	"RedeemMessage8": {
+		"type": "textbox",
+		"value": "{username} has decreed that {word} shall not be used for {hours} hours!",
+		"label": "Redemption Message",
+		"tooltip": "Redemption message that will be posted notifying chat of redemption effect. options: {username} {word} {seconds} {minutes} {hours} {days}",
+		"group": "Reward 8 - Ban Word Settings"
+	},
+	"ExpirationMessage8": {
+		"type": "textbox",
+		"value": "{word} is now unlocked!",
+		"label": "Expiration Message",
+		"tooltip": "Expiration message that will be posted notifying chat of duration of reward effect ending. options: {word}",
+		"group": "Reward 8 - Ban Word Settings"
+	},
+	"TriggerMessage8": {
+		"type": "textbox",
+		"value": "{username} Said: {msg}",
+		"label": "Trigger Message",
+		"tooltip": "Trigger message that will be posted to chat after someone triggers the ban. options: {username} {msg}",
+		"group": "Reward 8 - Ban Word Settings"
+	},
+	"CensorPhrase8": {
+		"type": "textbox",
+		"value": "[REDACTED]",
+		"label": "Censor Phrase",
+		"tooltip": "Message to replace banned words in someone's message.",
+		"group": "Reward 8 - Ban Word Settings"
+	},
+
+	/****************************************************************
+/  REWARD 9
+/***************************************************************/
 	"btnRewardHeader9": {
 		"type": "button",
 		"label": "V Reward 9 Settings V",
@@ -1808,7 +2186,8 @@
 			"Countdown Overlay",
 			"Timeout User",
 			"Convert Channel Points to Currency",
-			"AutoHotkey"
+			"AutoHotkey",
+			"Ban Word"
 		],
 		"group": "Reward 9 - Mandatory Settings"
 	},
@@ -1996,6 +2375,52 @@
 	},
 
 
+	"BlacklistDuration9": {
+		"type": "numberbox",
+		"label": "Ban Duration in Seconds",
+		"value": 3600,
+		"tooltip": "Specify the number in seconds for how long a word should be banned. 1 Minute = 60, 1 Hour = 3600, 1 Day = 86400",
+		"group": "Reward 9 - Ban Word Settings"
+	},
+	"FixedWord9": {
+		"type": "textbox",
+		"value": "",
+		"label": "Specific Word",
+		"tooltip": "Set a specific word to ban when triggered. If blank user entered text will be used.",
+		"group": "Reward 9 - Ban Word Settings"
+	},
+	"RedeemMessage9": {
+		"type": "textbox",
+		"value": "{username} has decreed that {word} shall not be used for {hours} hours!",
+		"label": "Redemption Message",
+		"tooltip": "Redemption message that will be posted notifying chat of redemption effect. options: {username} {word} {seconds} {minutes} {hours} {days}",
+		"group": "Reward 9 - Ban Word Settings"
+	},
+	"ExpirationMessage9": {
+		"type": "textbox",
+		"value": "{word} is now unlocked!",
+		"label": "Expiration Message",
+		"tooltip": "Expiration message that will be posted notifying chat of duration of reward effect ending. options: {word}",
+		"group": "Reward 9 - Ban Word Settings"
+	},
+	"TriggerMessage9": {
+		"type": "textbox",
+		"value": "{username} Said: {msg}",
+		"label": "Trigger Message",
+		"tooltip": "Trigger message that will be posted to chat after someone triggers the ban. options: {username} {msg}",
+		"group": "Reward 9 - Ban Word Settings"
+	},
+	"CensorPhrase9": {
+		"type": "textbox",
+		"value": "[REDACTED]",
+		"label": "Censor Phrase",
+		"tooltip": "Message to replace banned words in someone's message.",
+		"group": "Reward 9 - Ban Word Settings"
+	},
+
+	/****************************************************************
+/  REWARD 10
+/***************************************************************/
 	"btnRewardHeader10": {
 		"type": "button",
 		"label": "V Reward 10 Settings V",
@@ -2021,7 +2446,8 @@
 			"Countdown Overlay",
 			"Timeout User",
 			"Convert Channel Points to Currency",
-			"AutoHotkey"
+			"AutoHotkey",
+			"Ban Word"
 		],
 		"group": "Reward 10 - Mandatory Settings"
 	},
@@ -2209,12 +2635,56 @@
 	},
 
 
+	"BlacklistDuration10": {
+		"type": "numberbox",
+		"label": "Ban Duration in Seconds",
+		"value": 3600,
+		"tooltip": "Specify the number in seconds for how long a word should be banned. 1 Minute = 60, 1 Hour = 3600, 1 Day = 86400",
+		"group": "Reward 10 - Ban Word Settings"
+	},
+	"FixedWord10": {
+		"type": "textbox",
+		"value": "",
+		"label": "Specific Word",
+		"tooltip": "Set a specific word to ban when triggered. If blank user entered text will be used.",
+		"group": "Reward 10 - Ban Word Settings"
+	},
+	"RedeemMessage10": {
+		"type": "textbox",
+		"value": "{username} has decreed that {word} shall not be used for {hours} hours!",
+		"label": "Redemption Message",
+		"tooltip": "Redemption message that will be posted notifying chat of redemption effect. options: {username} {word} {seconds} {minutes} {hours} {days}",
+		"group": "Reward 10 - Ban Word Settings"
+	},
+	"ExpirationMessage10": {
+		"type": "textbox",
+		"value": "{word} is now unlocked!",
+		"label": "Expiration Message",
+		"tooltip": "Expiration message that will be posted notifying chat of duration of reward effect ending. options: {word}",
+		"group": "Reward 10 - Ban Word Settings"
+	},
+	"TriggerMessage10": {
+		"type": "textbox",
+		"value": "{username} Said: {msg}",
+		"label": "Trigger Message",
+		"tooltip": "Trigger message that will be posted to chat after someone triggers the ban. options: {username} {msg}",
+		"group": "Reward 10 - Ban Word Settings"
+	},
+	"CensorPhrase10": {
+		"type": "textbox",
+		"value": "[REDACTED]",
+		"label": "Censor Phrase",
+		"tooltip": "Message to replace banned words in someone's message.",
+		"group": "Reward 10 - Ban Word Settings"
+	},
+
+
 	"btnBackToTop": {
 		"type": "button",
 		"label": "^ Back to Top ^",
 		"tooltip": "Jump to top of settings.",
 		"wsevent": "",
 		"function": "PageUp",
-		"group": "	"
+		"group": "\t"
 	}
 }
