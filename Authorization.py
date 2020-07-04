@@ -27,7 +27,7 @@ class TwitchAuth(object):
                 data = json.loads(content[0])
                 self.RefreshToken = data["refresh_token"]
                 self.AccessToken = data["access_token"]
-                self.TokenExpiration = datetime.datetime.strptime(data["expiration"], "%Y-%m-%d %H:%M:%S.%f")
+                self.TokenExpiration = parseDate(data["expiration"])
 
     def CheckToken(self):
         tokenExpired = self.TokenExpiration < datetime.datetime.now()
@@ -141,3 +141,11 @@ def GetToken(self):
         redirectUrl += "/"
 
     os.startfile("https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=" + self.TwitchClientId + "&redirect_uri=" + redirectUrl + "&scope=channel:read:redemptions&force_verify=true")
+
+def parseDate(text):
+    for fmt in ("%Y-%m-%d %H:%M:%S.%f", "%Y-%m-%d %H:%M:%S"):
+        try:
+            return datetime.datetime.strptime(text, fmt)
+        except ValueError:
+            pass
+    raise ValueError('no valid date format found')
