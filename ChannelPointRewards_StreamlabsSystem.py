@@ -349,7 +349,8 @@ def EventReceiverRewardRedeemed(sender, e):
                     elif timeoutType == "Reward Message":
                         user = e.Message
 
-                    Parent.SendStreamMessage("/timeout " + user + " " + str(duration))
+                    if Parent.HasPermission(user, "Moderator", "") == False:
+                        Parent.SendStreamMessage("/timeout " + user + " " + str(duration))
                 elif "Convert Channel Points to Currency" in rewardType:
                     amount = 0
                     useRewardCost = bool(getattr(ScriptSettings, "UseRewardCost" + str(i)))
