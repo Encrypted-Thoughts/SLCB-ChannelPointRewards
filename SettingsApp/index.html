@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' *; style-src  'self' 'unsafe-inline' *">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src *; img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' *; style-src  'self' 'unsafe-inline' *">
+    <title>Rewards Script Settings</title>
+    <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/select2/dist/js/select2.min.js"></script>
+    <link href="node_modules/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="node_modules/bootswatch/dist/darkly/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="d-flex h-100 w-100">
+        <div class="d-flex flex-column col-12 pl-1 pr-1">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#rewards">Rewards</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#global">Global Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#authorization">Authorization</a>
+                </li>
+            </ul>
+            <div id="myTabContent" class="tab-content h-100 w-100">
+                <div class="tab-pane active show h-100 w-100" id="rewards">
+
+                    <div class="d-flex flex-row row h-100 w-100 m-0">
+                        <div class="d-flex flex-column col-4 p-0" style="border-right: 1px solid #444444">
+                            <select id="reward-list" multiple class="form-control h-100 p-0">
+                                <option value="0" selected>Reward 1</option>
+                                <option value="1">Reward 2</option>
+                                <option value="2">Reward 3</option>
+                            </select>
+                        </div>
+                        <div class="d-flex flex-column col-8">
+
+                            <div class="form-group">
+                                <label for="exampleInputFile">File input</label>
+                                <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                                <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                            </div>
+
+                            <div class="d-flex justify-content-center w-100 pt-1">
+                                <input type="button" class="btn btn-danger" style="width: 150px" value="Delete Reward" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab-pane" id="global">
+
+                    <label class="text-muted">File Browser</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+
+                </div>
+                <div class="tab-pane" id="authorization">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./renderer.js"></script>
+</body>
+</html>

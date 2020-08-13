@@ -1,0 +1,34 @@
+{
+  "name": "settings-app",
+  "version": "1.0.0",
+  "description": "Application to handle channel point script settings.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Encrypted-Thoughts/SLCB-ChannelPointRewards.git"
+  },
+  "author": "EncryptedThoughts",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Encrypted-Thoughts/SLCB-ChannelPointRewards/issues"
+  },
+  "homepage": "https://github.com/Encrypted-Thoughts/SLCB-ChannelPointRewards#readme",
+  "devDependencies": {
+    "bootstrap": "^4.5.0",
+    "electron": "^9.1.0",
+    "jquery": "^3.5.1"
+  },
+  "dependencies": {
+    "bootswatch": "^4.5.0",
+    "custom-electron-titlebar": "^3.2.2-hotfix62",
+    "jsdom": "^16.2.2",
+    "popper.js": "^1.16.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "select2": "^4.0.13"
+  }
+}

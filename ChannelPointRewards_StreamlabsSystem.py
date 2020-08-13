@@ -3,13 +3,16 @@
 #---------------------------
 #   Import Libraries
 #---------------------------
-import clr, codecs, json, os, re, sys, threading, datetime, math, random
+import clr, codecs, json, os, re, sys, threading, datetime, math, random, System
 random = random.WichmannHill()
+
+# Include the assembly with the name AnkhBotR2
+clr.AddReference([asbly for asbly in System.AppDomain.CurrentDomain.GetAssemblies() if "AnkhBotR2" in str(asbly)][0])
+import AnkhBotR2
 
 sys.path.append(os.path.dirname(__file__))
 sys.path.append(os.path.dirname(__file__) + "\Rewards")
-import Authorization, BanWord, Countdown, Alert
-from Authorization import TwitchAuth
+import BanWord, Countdown, Alert
 
 clr.AddReference("IronPython.Modules.dll")
 clr.AddReference("System.Windows.Forms")
@@ -35,9 +38,6 @@ EventReceiver = None
 ThreadQueue = []
 CurrentThread = None
 PlayNextAt = datetime.datetime.now()
-
-Auth = None
-UserID = None
 
 RewardCount = 10
 
@@ -131,16 +131,6 @@ def Init():
     global AlertReward
     AlertReward = Alert.Alert(ScriptName, Parent, ScriptSettings.EnableDebug)
 
-    global Auth
-    Auth = TwitchAuth(
-        ScriptName, 
-        Parent, 
-        ScriptSettings.TwitchClientId, 
-        ScriptSettings.TwitchClientSecret,
-        ScriptSettings.TwitchRedirectUrl,
-        ScriptSettings.TwitchAuthCode,
-        ScriptSettings.EnableDebug)
-
     return
 
 #---------------------------
@@ -179,10 +169,6 @@ def Execute(data):
 #   [Required] Tick method (Gets called during every iteration even when there is no incoming data)
 #---------------------------
 def Tick():
-    if Auth.CheckToken() == True:
-        RestartEventReceiver()
-        return
-
     global PlayNextAt
     global CurrentThread
     if CurrentThread is not None and CurrentThread["thread"].isAlive() == False:
@@ -282,22 +268,28 @@ def StopEventReceiver():
 #   RestartEventReceiver (Restart event receiver cleanly)
 #---------------------------
 def RestartEventReceiver():
-    global UserID
-    if Auth.RefreshTokens():
-        if UserID is None:
-            UserID = Auth.GetUserID()
-        StopEventReceiver()
-        StartEventReceiver()
+    StopEventReceiver()
+    StartEventReceiver()
 
 #---------------------------
 #   EventReceiverConnected (Twitch pubsub event callback for on connected event. Needs a valid UserID and AccessToken to function properly.)
 #---------------------------
 def EventReceiverConnected(sender, e):
-    if ScriptSettings.EnableDebug:
-        Parent.Log(ScriptName, "Event receiver connected, sending topics for channel id: " + str(UserID))
+    oauth = AnkhBotR2.Managers.GlobalManager.Instance.VMLocator.StreamerLogin.Token.replace("oauth:", "")
 
-    EventReceiver.ListenToRewards(UserID)
-    EventReceiver.SendTopics(Auth.GetAccessToken())
+    headers = { "Authorization": 'OAuth ' + oauth }
+    data = json.loads(Parent.GetRequest("https://id.twitch.tv/oauth2/validate", headers))
+
+    if ScriptSettings.EnableDebug:
+        Parent.Log(ScriptName, str(data))
+
+    userid = json.loads(data["response"])['user_id']
+
+    if ScriptSettings.EnableDebug:
+        Parent.Log(ScriptName, "Event receiver connected, sending topics for channel id: " + str(userid))
+
+    EventReceiver.ListenToRewards(userid)
+    EventReceiver.SendTopics(oauth)
     return
 
 #---------------------------
@@ -416,15 +408,3 @@ def PageDown():
 def PageUp():
     for i in range(1, RewardCount + 3):
         SendKeys.SendWait("{PGUP}")
-
-#---------------------------
-#   GetToken (Attached to settings button to open a page in browser to get an authorization code.)
-#---------------------------
-def GetToken():
-    Auth.GetToken()
-
-#---------------------------
-#   DeleteSavedTokens (Attached to settings button to allow user to easily delete the tokens.json file and clear out RefreshToken currently in memory so that a new authorization code can be entered and used.)
-#---------------------------
-def DeleteSavedTokens():
-    Auth.DeleteSavedTokens()

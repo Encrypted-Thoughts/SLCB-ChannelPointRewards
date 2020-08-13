@@ -25,59 +25,6 @@
 		"group": "Global Settings"
 	},
 
-	"TwitchClientId": {
-		"type": "textbox",
-		"value": "",
-		"label": "Twitch Client Id",
-		"tooltip": "Enter the client id of your application at dev.twitch.com. See readme for more information.",
-		"group": "Twitch Auth - KEEP HIDDEN"
-	},
-	"TwitchClientSecret": {
-		"type": "textbox",
-		"value": "",
-		"label": "Twitch Client Secret",
-		"tooltip": "Enter the client secret of your application at dev.twitch.com. See readme for more information.",
-		"group": "Twitch Auth - KEEP HIDDEN"
-	},
-	"TwitchRedirectUrl": {
-		"type": "textbox",
-		"value": "https://et-twitch-auth.com/",
-		"label": "Twitch Auth Redirect URL",
-		"tooltip": "This is where you will be redirected after getting an auth code. This should match the redirect url in dev.twitch application settings.",
-		"group": "Twitch Auth - KEEP HIDDEN"
-	},
-	"TwitchAuthCode": {
-		"type": "textbox",
-		"value": "",
-		"label": "Twitch Auth Code",
-		"tooltip": "Enter an Auth Code that allows the bot to read channel point redemptions on the channel being watched.",
-		"group": "Twitch Auth - KEEP HIDDEN"
-	},
-	"btnGetToken": {
-		"type": "button",
-		"label": "Get Token",
-		"tooltip": "Generate an Auth Code for the watched twitch account with permissions to read channel point redemptions.",
-		"wsevent": "",
-		"function": "GetToken",
-		"group": "Twitch Auth - KEEP HIDDEN"
-	},
-	"btnDeleteSavedTokens": {
-		"type": "button",
-		"label": "Delete Saved Tokens",
-		"tooltip": "Clear out saved tokens so that a new Authorization Code can be used.",
-		"wsevent": "",
-		"function": "DeleteSavedTokens",
-		"group": "Twitch Auth - KEEP HIDDEN"
-	},
-	"btnRefreshTokens": {
-		"type": "button",
-		"label": "Refresh Saved Tokens",
-		"tooltip": "Manually trigger a refresh of access token using refresh token..",
-		"wsevent": "",
-		"function": "RefreshTokens",
-		"group": "Twitch Auth - KEEP HIDDEN"
-	},
-
 	/****************************************************************
 /  REWARD 1
 /***************************************************************/
