@@ -18,7 +18,7 @@
   "homepage": "https://github.com/Encrypted-Thoughts/SLCB-ChannelPointRewards#readme",
   "devDependencies": {
     "bootstrap": "^4.5.0",
-    "electron": "^22.2.0",
+    "electron": "^22.3.21",
     "jquery": "^3.5.1"
   },
   "dependencies": {
