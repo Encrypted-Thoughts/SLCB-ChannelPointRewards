@@ -28,7 +28,7 @@
     "popper.js": "^1.16.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^6.26.2",
     "select2": "^4.0.13"
   }
 }
